@@ -13,25 +13,40 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/BP_GlobalFoliageActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/BP_GlobalFoliageActor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarA.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarA.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarB.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarC.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/FoliageTypes/FT_rkqjj_VarC.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/MI_rkqjj.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/MI_rkqjj.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/MI_rkqjj_Billboard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/MI_rkqjj_Billboard.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarA.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarA.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarB.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarC.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/SM_rkqjj_VarC.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_B.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_B.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_Billboard_B-O.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_Billboard_B-O.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_Billboard_N-T.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_Billboard_N-T.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_N.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_ORT.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Fab/Megascans/Plants/Tropical_Palm_rkqjj/High/T_rkqjj_4K_ORT.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armAO.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armColor.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armRoughness.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armnormal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm02.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm02.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm03.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/gloves.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/sleeves.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HorrorGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/HorrorGame.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Falling.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Falling.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Idle.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Jump.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Jump.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Land.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Land.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Falling.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Falling.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Fire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Fire.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Idle.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Land.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Land.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Run.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Run.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Shoot_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Shoot_Montage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Run_Fwd.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Run_Fwd.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FirstPerson_AnimBP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FirstPerson_AnimBP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/source/shotgunAnimated.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armNormal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armRoughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickNormal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickRoughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickmetallic.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -504,7 +519,7 @@
       <workItem from="1729196005818" duration="150000" />
       <workItem from="1729196180259" duration="1348000" />
       <workItem from="1730988390897" duration="332000" />
-      <workItem from="1730988782460" duration="3145000" />
+      <workItem from="1730988782460" duration="4299000" />
     </task>
     <servers />
   </component>
