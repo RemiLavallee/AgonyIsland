@@ -9,6 +9,9 @@ ABaseObject::ABaseObject()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
+	RootComponent = StaticMeshComp;
+
 }
 
 // Called when the game starts or when spawned
@@ -69,3 +72,10 @@ void ABaseObject::InitializeFromDataTable()
 	}
 }
 
+void ABaseObject::AssignMeshFromDataTable()
+{
+	static const FString ContextString(TEXT("Mesh Data Context"));
+	FStructObjectData* Row = DataTable->FindRow<FStructObjectData>(RowName, ContextString);
+	
+	StaticMeshComp->SetStaticMesh(Row->Mesh);
+}

@@ -33,11 +33,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Objects")
 	UDataTable* DataTable;
 
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* StaticMeshComp;
+
 	virtual void OnPickUp() override;
 	virtual void OnInspect() override;
 	virtual void OnInteract() override;
 
 private:
 	void InitializeFromDataTable();
-
+	
+	UFUNCTION(CallInEditor, Category = "Objects")
+	void AssignMeshFromDataTable();
 };
