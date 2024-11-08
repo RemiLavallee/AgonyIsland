@@ -9,6 +9,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "PlayerWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -36,12 +38,20 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	InspectOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("InspectOrigin"));
+	InspectOrigin->SetupAttachment(FirstPersonCameraComponent);
+	InspectOrigin->SetRelativeLocation(FVector(40.f, 0.f, 0.f));
+
 }
 
 void AHorrorGameCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerWidgetClass);
+	PlayerWidget = Cast<UPlayerWidget>(UserWidget);
+	PlayerWidget->AddToViewport();
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -60,6 +70,15 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::Look);
+
+		EnhancedInputComponent->BindAction(EnterInspectAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::EnterInspect);
+
+		EnhancedInputComponent->BindAction(ExitInspectAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::ExitInspect);
+
+		EnhancedInputComponent->BindAction(RotateInspectAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::RotateInspect);
 	}
 	else
 	{
@@ -91,5 +110,75 @@ void AHorrorGameCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void AHorrorGameCharacter::EnterInspect()
+{
+	if(!IsInspecting && IsValid(CurrentInspectActor))
+	{
+		IsInspecting = true;
+
+		PlayerWidget->SetPromptPick(false);
+		InspectOrigin->SetRelativeRotation(FRotator::ZeroRotator);
+		InitialInspectTransform = CurrentInspectActor->GetActorTransform();
+		CurrentInspectActor->AttachToComponent(InspectOrigin, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+
+		auto PlayerController = Cast<APlayerController>(GetController());
+		auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
+			PlayerController->GetLocalPlayer());
+		InputSubSystem->RemoveMappingContext(DefaultMappingContext);
+		InputSubSystem->AddMappingContext(InspectMappingContext, 0);
+	}
+}
+
+void AHorrorGameCharacter::ExitInspect()
+{
+	if(IsInspecting)
+	{
+		IsInspecting = false;
+		CurrentInspectActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+		CurrentInspectActor->SetActorTransform(InitialInspectTransform);
+		CurrentInspectActor = nullptr;
+	
+		auto PlayerController = Cast<APlayerController>(GetController());
+		auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
+			PlayerController->GetLocalPlayer());
+		InputSubSystem->RemoveMappingContext(InspectMappingContext);
+		InputSubSystem->AddMappingContext(DefaultMappingContext, 0);
+	}
+}
+
+void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
+{
+}
+
+void AHorrorGameCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (!IsInspecting)
+	{
+		FHitResult Hit;
+		FVector Start = FirstPersonCameraComponent->GetComponentLocation();
+		FVector End = Start + (FirstPersonCameraComponent->GetForwardVector() * 200.f);
+
+		FCollisionObjectQueryParams ObjectQueryParams;
+		ObjectQueryParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+
+		FCollisionQueryParams CollisionParams;
+		CollisionParams.AddIgnoredActor(this);
+
+		if (GetWorld()->LineTraceSingleByObjectType(Hit, Start, End, ObjectQueryParams, CollisionParams) && IsValid(
+			Hit.GetActor()))
+		{
+			CurrentInspectActor = Hit.GetActor();
+			PlayerWidget->SetPromptPick(true);
+		}
+		else
+		{
+			CurrentInspectActor = nullptr;
+			PlayerWidget->SetPromptPick(false);
+		}
 	}
 }

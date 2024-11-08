@@ -12,49 +12,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armAO.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armColor.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armRoughness.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm01_Texture/armnormal.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arm02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/Arms_Pack_Arm03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/gloves.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/sleeves.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Falling.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Falling.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Idle.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Jump.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Jump.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Land.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Land.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Falling.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Falling.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Fire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Fire.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Idle.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Land.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Land.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Run.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Run.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Shoot_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Rifle_Shoot_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Run_Fwd.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FP_Run_Fwd.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FirstPerson_AnimBP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Animations/FirstPerson_AnimBP.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPersonArms/Character/Mesh/SK_Mannequin_Arms.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/source/shotgunAnimated.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armNormal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/armRoughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickNormal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickRoughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/SkeletalMeshes/Weapons/shotgun-animated/textures/boomstickmetallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HorrorGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/HorrorGame.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -520,6 +500,7 @@
       <workItem from="1729196180259" duration="1348000" />
       <workItem from="1730988390897" duration="332000" />
       <workItem from="1730988782460" duration="4299000" />
+      <workItem from="1731077867995" duration="2004000" />
     </task>
     <servers />
   </component>
@@ -528,7 +509,6 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
-    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>
