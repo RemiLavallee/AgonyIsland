@@ -12,6 +12,7 @@
 #include "PlayerWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
+#include "Kismet/KismetMathLibrary.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -151,6 +152,19 @@ void AHorrorGameCharacter::ExitInspect()
 
 void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 {
+	
+	FVector2D RotateAxis = Value.Get<FVector2D>();
+
+	FRotator CurrentRotation = CurrentInspectActor->GetActorRotation();
+
+	FRotator InspectRotation;
+	InspectRotation.Pitch = RotateAxis.Y;
+	InspectRotation.Yaw = RotateAxis.X * -1.0f;
+	InspectRotation.Roll = 0.0f;
+
+	FRotator NewRotation = UKismetMathLibrary::ComposeRotators(CurrentRotation, InspectRotation);
+
+	CurrentInspectActor->SetActorRotation(NewRotation);
 }
 
 void AHorrorGameCharacter::Tick(float DeltaTime)
