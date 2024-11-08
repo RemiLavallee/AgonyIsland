@@ -12,6 +12,7 @@
 #include "PlayerWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
+#include "InterfaceInspect.h"
 #include "Kismet/KismetMathLibrary.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -186,8 +187,16 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 		if (GetWorld()->LineTraceSingleByObjectType(Hit, Start, End, ObjectQueryParams, CollisionParams) && IsValid(
 			Hit.GetActor()))
 		{
-			CurrentInspectActor = Hit.GetActor();
-			PlayerWidget->SetPromptPick(true);
+			if (Hit.GetActor()->GetClass()->ImplementsInterface(UInterfaceInspect::StaticClass()))
+			{
+				CurrentInspectActor = Hit.GetActor();
+				PlayerWidget->SetPromptPick(true);
+			}
+			else
+			{
+				CurrentInspectActor = nullptr;
+				PlayerWidget->SetPromptPick(false);
+			}
 		}
 		else
 		{

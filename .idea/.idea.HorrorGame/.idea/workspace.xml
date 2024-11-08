@@ -13,9 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +27,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceType.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceType.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -499,6 +508,7 @@
       <workItem from="1730988782460" duration="4299000" />
       <workItem from="1731077867995" duration="4529000" />
       <workItem from="1731082481266" duration="1451000" />
+      <workItem from="1731087009921" duration="3019000" />
     </task>
     <servers />
   </component>
