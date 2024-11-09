@@ -13,7 +13,9 @@
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
 #include "InterfaceInspect.h"
+#include "Components/AudioComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Sound/SoundCue.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -44,6 +46,9 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	InspectOrigin->SetupAttachment(FirstPersonCameraComponent);
 	InspectOrigin->SetRelativeLocation(FVector(40.f, 0.f, 0.f));
 
+	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
+	AudioComponent->SetupAttachment(RootComponent);
+	AudioComponent->bAutoActivate = false;
 }
 
 void AHorrorGameCharacter::BeginPlay()
@@ -54,6 +59,8 @@ void AHorrorGameCharacter::BeginPlay()
 	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerWidgetClass);
 	PlayerWidget = Cast<UPlayerWidget>(UserWidget);
 	PlayerWidget->AddToViewport();
+
+	IsMoving = false;
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -81,6 +88,8 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		EnhancedInputComponent->BindAction(RotateInspectAction, ETriggerEvent::Triggered, this,
 										   &AHorrorGameCharacter::RotateInspect);
+		
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &AHorrorGameCharacter::ResetMovementVector);
 	}
 	else
 	{
@@ -92,13 +101,13 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 void AHorrorGameCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
-	FVector2D MovementVector = Value.Get<FVector2D>();
-
+	CurrentMovementVector = Value.Get<FVector2D>();
+	
 	if (Controller != nullptr)
 	{
 		// add movement 
-		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
-		AddMovementInput(GetActorRightVector(), MovementVector.X);
+		AddMovementInput(GetActorForwardVector(), CurrentMovementVector.Y);
+		AddMovementInput(GetActorRightVector(), CurrentMovementVector.X);
 	}
 }
 
@@ -204,4 +213,46 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 			PlayerWidget->SetPromptPick(false);
 		}
 	}
+
+	if (CurrentMovementVector.IsNearlyZero(0.1f))
+	{
+		if (IsMoving)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Stopping footsteps sound"));
+			StopFootstepsSound();
+		}
+		IsMoving = false;
+	}
+	else
+	{
+		if (!IsMoving)
+		{
+			StartFootstepsSound();
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Starting footsteps sound"));
+		}
+		IsMoving = true;
+	}
+}
+
+void AHorrorGameCharacter::StartFootstepsSound()
+{
+	if (FootstepSound && !AudioComponent->IsPlaying())
+	{
+		AudioComponent->SetSound(FootstepSound);
+		AudioComponent->Play();
+	}
+}
+
+void AHorrorGameCharacter::StopFootstepsSound()
+{
+	if (AudioComponent->IsPlaying())
+	{
+		AudioComponent->Stop();
+	}
+	// GetWorld()->GetTimerManager().ClearTimer(FootstepTimerHandle);
+}
+
+void AHorrorGameCharacter::ResetMovementVector()
+{
+	CurrentMovementVector = FVector2D::ZeroVector;
 }

@@ -54,7 +54,7 @@ class AHorrorGameCharacter : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* InspectMappingContext;
-	
+
 public:
 	AHorrorGameCharacter();
 
@@ -82,6 +82,12 @@ protected:
 
 	void Tick(float DeltaTime);
 
+	void StartFootstepsSound();
+
+	void StopFootstepsSound();
+
+	void ResetMovementVector();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
@@ -93,6 +99,12 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundCue* FootstepSound;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Audio")
+	UAudioComponent* AudioComponent;
+
 private:
 	UPROPERTY()
 	class UPlayerWidget* PlayerWidget;
@@ -101,9 +113,10 @@ private:
 	TSubclassOf<UUserWidget> PlayerWidgetClass;
 
 	bool IsInspecting;
-
 	AActor* CurrentInspectActor;
-
 	FTransform InitialInspectTransform;
+	bool IsMoving;
+	FTimerHandle FootstepTimerHandle;
+	FVector2D CurrentMovementVector;
 };
 
