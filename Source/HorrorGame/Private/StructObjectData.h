@@ -17,5 +17,8 @@ struct FStructObjectData : public FTableRowBase
 	UStaticMesh* Mesh = nullptr;;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EInterfaceType InterfaceType = EInterfaceType::None;;
+	EInterfaceType InterfaceType = EInterfaceType::None;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowAbstract = "false"))
+	TSubclassOf<UObject> BlueprintClass;
 };

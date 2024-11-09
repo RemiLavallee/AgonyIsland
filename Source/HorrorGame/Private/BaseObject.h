@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Objects")
 	UDataTable* DataTable;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objects")
+	TSubclassOf<AActor> AssociatedBlueprint;
+	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMeshComp;
 

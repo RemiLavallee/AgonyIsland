@@ -88,7 +88,7 @@ protected:
 
 	void ResetMovementVector();
 
-	void pickUp();
+	void PickUp();
 
 protected:
 	// APawn interface

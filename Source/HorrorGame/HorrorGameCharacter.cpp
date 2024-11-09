@@ -231,18 +231,28 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 					CurrentInspectActor = HitObject;
 					PlayerWidget->SetPromptInspect(true);
 					PlayerWidget->SetPromptPick(false);
+					PlayerWidget->SetPromptInteract(false);
 					break;
 
 				case EInterfaceType::Pickup:
 					CurrentInspectActor = HitObject;
 					PlayerWidget->SetPromptPick(true);
 					PlayerWidget->SetPromptInspect(false);
+					PlayerWidget->SetPromptInteract(false);
+					break;
+
+				case EInterfaceType::Interact:
+					CurrentInspectActor = HitObject;
+					PlayerWidget->SetPromptPick(false);
+					PlayerWidget->SetPromptInspect(false);
+					PlayerWidget->SetPromptInteract(true);
 					break;
 
 				default:
 					CurrentInspectActor = nullptr;
 					PlayerWidget->SetPromptPick(false);
 					PlayerWidget->SetPromptInspect(false);
+					PlayerWidget->SetPromptInteract(false);
 					break;
 				}
 			}
@@ -252,6 +262,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 			CurrentInspectActor = nullptr;
 			PlayerWidget->SetPromptPick(false);
 			PlayerWidget->SetPromptInspect(false);
+			PlayerWidget->SetPromptInteract(false);
 		}
 	}
 
@@ -297,7 +308,7 @@ void AHorrorGameCharacter::ResetMovementVector()
 	CurrentMovementVector = FVector2D::ZeroVector;
 }
 
-void AHorrorGameCharacter::pickUp()
+void AHorrorGameCharacter::PickUp()
 {
 	if (IsValid(CurrentInspectActor))
 	{
