@@ -13,6 +13,8 @@
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
 #include "InterfaceInspect.h"
+#include "InterfacePickUp.h"
+#include "BaseObject.h"
 #include "Components/AudioComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Sound/SoundCue.h"
@@ -26,7 +28,7 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
-		
+
 	// Create a CameraComponent	
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
 	FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());
@@ -66,7 +68,7 @@ void AHorrorGameCharacter::BeginPlay()
 //////////////////////////////////////////////////////////////////////////// Input
 
 void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{	
+{
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
@@ -81,19 +83,23 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::Look);
 
 		EnhancedInputComponent->BindAction(EnterInspectAction, ETriggerEvent::Triggered, this,
-										   &AHorrorGameCharacter::EnterInspect);
+		                                   &AHorrorGameCharacter::EnterInspect);
 
 		EnhancedInputComponent->BindAction(ExitInspectAction, ETriggerEvent::Triggered, this,
-										   &AHorrorGameCharacter::ExitInspect);
+		                                   &AHorrorGameCharacter::ExitInspect);
 
 		EnhancedInputComponent->BindAction(RotateInspectAction, ETriggerEvent::Triggered, this,
-										   &AHorrorGameCharacter::RotateInspect);
-		
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &AHorrorGameCharacter::ResetMovementVector);
+		                                   &AHorrorGameCharacter::RotateInspect);
+
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this,
+		                                   &AHorrorGameCharacter::ResetMovementVector);
 	}
 	else
 	{
-		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input Component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
+		UE_LOG(LogTemplateCharacter, Error,
+		       TEXT(
+			       "'%s' Failed to find an Enhanced Input Component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."
+		       ), *GetNameSafe(this));
 	}
 }
 
@@ -102,7 +108,7 @@ void AHorrorGameCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	CurrentMovementVector = Value.Get<FVector2D>();
-	
+
 	if (Controller != nullptr)
 	{
 		// add movement 
@@ -126,32 +132,47 @@ void AHorrorGameCharacter::Look(const FInputActionValue& Value)
 
 void AHorrorGameCharacter::EnterInspect()
 {
-	if(!IsInspecting && IsValid(CurrentInspectActor))
+	if (!IsInspecting && IsValid(CurrentInspectActor))
 	{
-		IsInspecting = true;
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+		
+		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Inspect)
+		{
+			IsInspecting = true;
 
-		PlayerWidget->SetPromptPick(false);
-		InspectOrigin->SetRelativeRotation(FRotator::ZeroRotator);
-		InitialInspectTransform = CurrentInspectActor->GetActorTransform();
-		CurrentInspectActor->AttachToComponent(InspectOrigin, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			PlayerWidget->SetPromptInspect(false);
+			InspectOrigin->SetRelativeRotation(FRotator::ZeroRotator);
+			InitialInspectTransform = HitObject->GetActorTransform();
+			HitObject->AttachToComponent(InspectOrigin,
+			                                       FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
-		auto PlayerController = Cast<APlayerController>(GetController());
-		auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
-			PlayerController->GetLocalPlayer());
-		InputSubSystem->RemoveMappingContext(DefaultMappingContext);
-		InputSubSystem->AddMappingContext(InspectMappingContext, 0);
+			auto PlayerController = Cast<APlayerController>(GetController());
+			auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
+				PlayerController->GetLocalPlayer());
+			InputSubSystem->RemoveMappingContext(DefaultMappingContext);
+			InputSubSystem->AddMappingContext(InspectMappingContext, 0);
+		}
 	}
 }
 
 void AHorrorGameCharacter::ExitInspect()
 {
-	if(IsInspecting)
+	if (IsInspecting)
 	{
 		IsInspecting = false;
-		CurrentInspectActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-		CurrentInspectActor->SetActorTransform(InitialInspectTransform);
-		CurrentInspectActor = nullptr;
-	
+
+		if (CurrentInspectActor)
+		{
+			CurrentInspectActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+			if (InitialInspectTransform.IsValid())
+			{
+				CurrentInspectActor->SetActorTransform(InitialInspectTransform);
+			}
+
+			CurrentInspectActor = nullptr;
+		}
+
 		auto PlayerController = Cast<APlayerController>(GetController());
 		auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
 			PlayerController->GetLocalPlayer());
@@ -162,7 +183,12 @@ void AHorrorGameCharacter::ExitInspect()
 
 void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 {
-	
+	if (!IsValid(CurrentInspectActor))
+	{
+		UE_LOG(LogTemplateCharacter, Warning, TEXT("RotateInspect called but CurrentInspectActor is null!"));
+		return;
+	}
+
 	FVector2D RotateAxis = Value.Get<FVector2D>();
 
 	FRotator CurrentRotation = CurrentInspectActor->GetActorRotation();
@@ -196,21 +222,36 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 		if (GetWorld()->LineTraceSingleByObjectType(Hit, Start, End, ObjectQueryParams, CollisionParams) && IsValid(
 			Hit.GetActor()))
 		{
-			if (Hit.GetActor()->GetClass()->ImplementsInterface(UInterfaceInspect::StaticClass()))
+			ABaseObject* HitObject = Cast<ABaseObject>(Hit.GetActor());
+			if (HitObject)
 			{
-				CurrentInspectActor = Hit.GetActor();
-				PlayerWidget->SetPromptPick(true);
-			}
-			else
-			{
-				CurrentInspectActor = nullptr;
-				PlayerWidget->SetPromptPick(false);
+				switch (HitObject->ActiveInterface)
+				{
+				case EInterfaceType::Inspect:
+					CurrentInspectActor = HitObject;
+					PlayerWidget->SetPromptInspect(true);
+					PlayerWidget->SetPromptPick(false);
+					break;
+
+				case EInterfaceType::Pickup:
+					CurrentInspectActor = HitObject;
+					PlayerWidget->SetPromptPick(true);
+					PlayerWidget->SetPromptInspect(false);
+					break;
+
+				default:
+					CurrentInspectActor = nullptr;
+					PlayerWidget->SetPromptPick(false);
+					PlayerWidget->SetPromptInspect(false);
+					break;
+				}
 			}
 		}
 		else
 		{
 			CurrentInspectActor = nullptr;
 			PlayerWidget->SetPromptPick(false);
+			PlayerWidget->SetPromptInspect(false);
 		}
 	}
 
@@ -249,10 +290,23 @@ void AHorrorGameCharacter::StopFootstepsSound()
 	{
 		AudioComponent->Stop();
 	}
-	// GetWorld()->GetTimerManager().ClearTimer(FootstepTimerHandle);
 }
 
 void AHorrorGameCharacter::ResetMovementVector()
 {
 	CurrentMovementVector = FVector2D::ZeroVector;
+}
+
+void AHorrorGameCharacter::pickUp()
+{
+	if (IsValid(CurrentInspectActor))
+	{
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+
+		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Pickup)
+		{
+			HitObject->OnPickUp();
+			CurrentInspectActor = nullptr;
+		}
+	}
 }

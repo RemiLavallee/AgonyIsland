@@ -88,6 +88,8 @@ protected:
 
 	void ResetMovementVector();
 
+	void pickUp();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;

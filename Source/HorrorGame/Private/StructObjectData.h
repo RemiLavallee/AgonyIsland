@@ -14,8 +14,8 @@ struct FStructObjectData : public FTableRowBase
 	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UStaticMesh* Mesh;
+	UStaticMesh* Mesh = nullptr;;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EInterfaceType InterfaceType;
+	EInterfaceType InterfaceType = EInterfaceType::None;;
 };

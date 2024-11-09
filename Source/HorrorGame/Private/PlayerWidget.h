@@ -18,5 +18,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetPromptPick(bool IsVisible);
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetPromptInspect(bool IsVisible);
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetPromptInteract(bool IsVisible);
 	
 };

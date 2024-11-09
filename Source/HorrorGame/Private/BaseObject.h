@@ -40,6 +40,8 @@ public:
 	virtual void OnInspect() override;
 	virtual void OnInteract() override;
 
+	EInterfaceType ActiveInterface;
+
 private:
 	void InitializeFromDataTable();
 	

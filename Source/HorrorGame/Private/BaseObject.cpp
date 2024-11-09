@@ -18,6 +18,7 @@ ABaseObject::ABaseObject()
 void ABaseObject::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Log, TEXT("BeginPlay called for: %s, RowName: %s"), *GetName(), *RowName.ToString());
 	InitializeFromDataTable();
 	
 }
@@ -55,21 +56,28 @@ void ABaseObject::InitializeFromDataTable()
 			MeshComp->SetStaticMesh(Row->Mesh);
 		}
 	}
+
+	ActiveInterface = EInterfaceType::None;
+	ActiveInterface = Row->InterfaceType;
 	
-	switch (Row->InterfaceType)
+	switch (ActiveInterface)
 	{
 	case EInterfaceType::Pickup:
 		UE_LOG(LogTemp, Log, TEXT("Object set as Pickup"));
+		ActiveInterface = EInterfaceType::Pickup;
 		break;
 
 	case EInterfaceType::Inspect:
 		UE_LOG(LogTemp, Log, TEXT("Object set as Inspect"));
+		ActiveInterface = EInterfaceType::Inspect;
+
 		break;
 
 	default:
 		UE_LOG(LogTemp, Log, TEXT("No interface set for this object"));
 		break;
 	}
+	
 }
 
 void ABaseObject::AssignMeshFromDataTable()
