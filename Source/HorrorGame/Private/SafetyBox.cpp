@@ -3,6 +3,8 @@
 
 #include "SafetyBox.h"
 
+#include "MaterialHLSLTree.h"
+
 ASafetyBox::ASafetyBox()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -15,4 +17,58 @@ ASafetyBox::ASafetyBox()
 	
 	SafetyBoxDoorBlockMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Door"));
 	SafetyBoxDoorBlockMesh->SetupAttachment(Root);
+	
+}
+
+void ASafetyBox::OnInteract()
+{
+	Super::OnInteract();
+	DoorTimeline.Play();
+	DoorLocationTimeline.Play();
+
+	ActiveInterface = EInterfaceType::None;
+}
+
+void ASafetyBox::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+	DoorTimeline.TickTimeline(DeltaTime);
+	if (DoorLocationTimeline.IsPlaying())
+	{
+		DoorLocationTimeline.TickTimeline(DeltaTime);
+	}
+}
+
+void ASafetyBox::BeginPlay()
+{
+	Super::BeginPlay();
+
+	FOnTimelineFloat DoorUpdateCallback;
+	DoorUpdateCallback.BindUFunction(this, FName("UpdateDoorRotation"));
+
+	FOnTimelineFloat LocationUpdateCallback;
+	LocationUpdateCallback.BindUFunction(this, FName("UpdateDoorLocation"));
+
+	if(DoorRotationCurve)
+	{
+		DoorTimeline.AddInterpFloat(DoorRotationCurve, DoorUpdateCallback);
+	}
+	
+	if(DoorLocationCurve)
+	{
+		DoorLocationTimeline.AddInterpFloat(DoorLocationCurve, LocationUpdateCallback);
+	}
+}
+
+void ASafetyBox::UpdateDoorRotation(float Value)
+{
+	FRotator NewRotation = FRotator(0.0f, Value, 0.0f);
+	SafetyBoxDoorBlockMesh->SetRelativeRotation(NewRotation);
+}
+
+void ASafetyBox::UpdateDoorLocation(float Value)
+{
+	FVector NewLocation = FVector(Value, 0.0f, 0.0f);
+	SafetyBoxDoorBlockMesh->SetRelativeLocation(NewLocation);
 }

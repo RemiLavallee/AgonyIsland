@@ -93,6 +93,15 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this,
 		                                   &AHorrorGameCharacter::ResetMovementVector);
+
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::Interact);
+
+		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::PickUp);
+
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this,
+										   &AHorrorGameCharacter::Crouch);
 	}
 	else
 	{
@@ -320,4 +329,31 @@ void AHorrorGameCharacter::PickUp()
 			CurrentInspectActor = nullptr;
 		}
 	}
+}
+
+void AHorrorGameCharacter::Interact()
+{
+	if (IsValid(CurrentInspectActor))
+	{
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+	
+		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Interact)
+		{
+			HitObject->OnInteract();
+			CurrentInspectActor = nullptr;
+		}
+	}
+}
+
+void AHorrorGameCharacter::Crouch()
+{
+	if (GetMesh() && GetMesh()->GetAnimInstance() && CrouchMontage)
+	{
+		GetMesh()->GetAnimInstance()->Montage_Play(CrouchMontage, 1.0f);
+	}
+}
+
+USkeletalMeshComponent* AHorrorGameCharacter::GetMesh() const
+{
+	return Mesh1P;
 }
