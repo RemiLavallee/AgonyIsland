@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/TimelineComponent.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "HorrorGameCharacter.generated.h"
@@ -102,10 +103,9 @@ protected:
 	void Interact();
 
 	void Crouch();
-	USkeletalMeshComponent* GetMesh() const;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
-	UAnimMontage* CrouchMontage;
+	UFUNCTION()
+	void UpdateCrouchTransition(float Value);
 
 protected:
 	// APawn interface
@@ -124,6 +124,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Audio")
 	UAudioComponent* AudioComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+	UCurveFloat* CrouchCurve;
+	
+	bool IsCrouching() const { return bIsCrouching; }
+
 private:
 	UPROPERTY()
 	class UPlayerWidget* PlayerWidget;
@@ -137,5 +142,11 @@ private:
 	bool IsMoving;
 	FTimerHandle FootstepTimerHandle;
 	FVector2D CurrentMovementVector;
+	FTimeline CrouchTimeline;
+	float NormalCapsuleHalfHeight = 96.0f;
+	float CrouchedCapsuleHalfHeight = 48.0f;
+	float NormalCameraHeight = 60.0f;
+	float CrouchedCameraHeight = 30.0f;
+	bool bIsCrouching;
 };
 

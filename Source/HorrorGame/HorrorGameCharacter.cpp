@@ -16,6 +16,7 @@
 #include "InterfacePickUp.h"
 #include "BaseObject.h"
 #include "Components/AudioComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Sound/SoundCue.h"
 
@@ -24,7 +25,7 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 //////////////////////////////////////////////////////////////////////////
 // AHorrorGameCharacter
 
-AHorrorGameCharacter::AHorrorGameCharacter()
+AHorrorGameCharacter::AHorrorGameCharacter() : bIsCrouching(false)
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
@@ -63,6 +64,16 @@ void AHorrorGameCharacter::BeginPlay()
 	PlayerWidget->AddToViewport();
 
 	IsMoving = false;
+
+	if (CrouchCurve)
+	{
+		FOnTimelineFloat TimelineCallback;
+		TimelineCallback.BindUFunction(this, FName("UpdateCrouchTransition"));
+
+		CrouchTimeline.AddInterpFloat(CrouchCurve, TimelineCallback);
+
+		CrouchTimeline.SetLooping(false);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -100,7 +111,7 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this,
 										   &AHorrorGameCharacter::PickUp);
 
-		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this,
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this,
 										   &AHorrorGameCharacter::Crouch);
 	}
 	else
@@ -293,6 +304,11 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 		}
 		IsMoving = true;
 	}
+
+	if (CrouchTimeline.IsPlaying())
+	{
+		CrouchTimeline.TickTimeline(DeltaTime);
+	}
 }
 
 void AHorrorGameCharacter::StartFootstepsSound()
@@ -347,13 +363,25 @@ void AHorrorGameCharacter::Interact()
 
 void AHorrorGameCharacter::Crouch()
 {
-	if (GetMesh() && GetMesh()->GetAnimInstance() && CrouchMontage)
+	if (bIsCrouching)
 	{
-		GetMesh()->GetAnimInstance()->Montage_Play(CrouchMontage, 1.0f);
+		CrouchTimeline.Reverse();
+		GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	}
+	else
+	{
+		CrouchTimeline.Play();
+		GetCharacterMovement()->MaxWalkSpeed = 200.f;
+	}
+
+	bIsCrouching = !bIsCrouching;
 }
 
-USkeletalMeshComponent* AHorrorGameCharacter::GetMesh() const
+void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
 {
-	return Mesh1P;
+	float NewCapsuleHalfHeight = FMath::Lerp(NormalCapsuleHalfHeight, CrouchedCapsuleHalfHeight, Value);
+	GetCapsuleComponent()->SetCapsuleHalfHeight(NewCapsuleHalfHeight);
+
+	float NewCameraHeight = FMath::Lerp(NormalCameraHeight, CrouchedCameraHeight, Value);
+	FirstPersonCameraComponent->SetRelativeLocation(FVector(-10.f, 0.f, NewCameraHeight));
 }
