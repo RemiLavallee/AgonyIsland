@@ -13,12 +13,14 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/arms/BS_Arms.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/Arms/arms/BS_Arms.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FPWeapon/Materials/BaseMaterial.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FPWeapon/Materials/BaseMaterial.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Safetybox.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Safetybox.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/UMG/Private/WidgetBlueprintLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/DialogText.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +53,8 @@
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.h" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -526,6 +532,8 @@
       <workItem from="1731190869034" duration="3665000" />
       <workItem from="1731260233468" duration="6924000" />
       <workItem from="1731267341371" duration="5084000" />
+      <workItem from="1731356923287" duration="7367000" />
+      <workItem from="1731374781401" duration="4903000" />
     </task>
     <servers />
   </component>

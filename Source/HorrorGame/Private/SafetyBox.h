@@ -35,6 +35,7 @@ public:
 
 	FTimeline DoorTimeline;
 	FTimeline DoorLocationTimeline;
+	bool IsOpen;
 
 	virtual void OnInteract() override;
 	virtual void Tick(float DeltaTime) override;
@@ -45,4 +46,13 @@ public:
 	
 	UFUNCTION()
 	void UpdateDoorLocation(float Value);
+
+private:
+	void Open();
+
+	UPROPERTY()
+	class USafetyBoxWidget* SafetyBoxWidget;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> SafetyBoxWidgetClass;
 };

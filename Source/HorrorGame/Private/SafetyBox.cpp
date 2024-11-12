@@ -4,6 +4,8 @@
 #include "SafetyBox.h"
 
 #include "MaterialHLSLTree.h"
+#include "SafetyBoxWidget.h"
+#include "Blueprint/UserWidget.h"
 
 ASafetyBox::ASafetyBox()
 {
@@ -23,10 +25,13 @@ ASafetyBox::ASafetyBox()
 void ASafetyBox::OnInteract()
 {
 	Super::OnInteract();
-	DoorTimeline.Play();
-	DoorLocationTimeline.Play();
-
-	ActiveInterface = EInterfaceType::None;
+	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), SafetyBoxWidgetClass);
+	SafetyBoxWidget = Cast<USafetyBoxWidget>(UserWidget);
+	if (SafetyBoxWidget)
+	{
+		SafetyBoxWidget->AddToViewport();
+	}
+	Open();
 }
 
 void ASafetyBox::Tick(float DeltaTime)
@@ -43,7 +48,7 @@ void ASafetyBox::Tick(float DeltaTime)
 void ASafetyBox::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	FOnTimelineFloat DoorUpdateCallback;
 	DoorUpdateCallback.BindUFunction(this, FName("UpdateDoorRotation"));
 
@@ -71,4 +76,12 @@ void ASafetyBox::UpdateDoorLocation(float Value)
 {
 	FVector NewLocation = FVector(Value, 0.0f, 0.0f);
 	SafetyBoxDoorBlockMesh->SetRelativeLocation(NewLocation);
+}
+
+void ASafetyBox::Open()
+{
+	DoorTimeline.Play();
+	DoorLocationTimeline.Play();
+
+	ActiveInterface = EInterfaceType::None;
 }

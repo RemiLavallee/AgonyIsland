@@ -52,6 +52,10 @@ AHorrorGameCharacter::AHorrorGameCharacter() : bIsCrouching(false)
 	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
 	AudioComponent->SetupAttachment(RootComponent);
 	AudioComponent->bAutoActivate = false;
+
+	FlashLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("FlashLight"));
+	FlashLight->SetupAttachment(FirstPersonCameraComponent);
+	FlashLight->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 }
 
 void AHorrorGameCharacter::BeginPlay()
