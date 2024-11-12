@@ -84,4 +84,7 @@ void ASafetyBox::Open()
 	DoorLocationTimeline.Play();
 
 	ActiveInterface = EInterfaceType::None;
+
+	SetActorEnableCollision(false);
+	Tags.Add(FName("IgnoreLineTrace"));
 }

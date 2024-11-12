@@ -25,7 +25,7 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 //////////////////////////////////////////////////////////////////////////
 // AHorrorGameCharacter
 
-AHorrorGameCharacter::AHorrorGameCharacter() : bIsCrouching(false)
+AHorrorGameCharacter::AHorrorGameCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
@@ -68,6 +68,7 @@ void AHorrorGameCharacter::BeginPlay()
 	PlayerWidget->AddToViewport();
 
 	IsMoving = false;
+	bIsCrouching = false;
 
 	if (CrouchCurve)
 	{
@@ -247,8 +248,14 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 			Hit.GetActor()))
 		{
 			ABaseObject* HitObject = Cast<ABaseObject>(Hit.GetActor());
-			if (HitObject)
+			if (HitObject && !HitObject->Tags.Contains(FName("IgnoreLineTrace")))
 			{
+				DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.f, 0, 1.f);
+				FString HitActorName = Hit.GetActor()->GetName();
+				if (GEngine)
+				{
+					GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Hit Object: %s"), *HitActorName));
+				}
 				switch (HitObject->ActiveInterface)
 				{
 				case EInterfaceType::Inspect:
