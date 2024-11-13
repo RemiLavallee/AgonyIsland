@@ -161,9 +161,9 @@ void AHorrorGameCharacter::Look(const FInputActionValue& Value)
 
 void AHorrorGameCharacter::EnterInspect()
 {
-	if (!IsInspecting && IsValid(CurrentInspectActor))
+	if (!IsInspecting && IsValid(CurrentActor))
 	{
-		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentActor);
 		
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Inspect)
 		{
@@ -190,16 +190,16 @@ void AHorrorGameCharacter::ExitInspect()
 	{
 		IsInspecting = false;
 
-		if (CurrentInspectActor)
+		if (CurrentActor)
 		{
-			CurrentInspectActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			CurrentActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
 			if (InitialInspectTransform.IsValid())
 			{
-				CurrentInspectActor->SetActorTransform(InitialInspectTransform);
+				CurrentActor->SetActorTransform(InitialInspectTransform);
 			}
 
-			CurrentInspectActor = nullptr;
+			CurrentActor = nullptr;
 		}
 
 		auto PlayerController = Cast<APlayerController>(GetController());
@@ -212,7 +212,7 @@ void AHorrorGameCharacter::ExitInspect()
 
 void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 {
-	if (!IsValid(CurrentInspectActor))
+	if (!IsValid(CurrentActor))
 	{
 		UE_LOG(LogTemplateCharacter, Warning, TEXT("RotateInspect called but CurrentInspectActor is null!"));
 		return;
@@ -220,7 +220,7 @@ void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 
 	FVector2D RotateAxis = Value.Get<FVector2D>();
 
-	FRotator CurrentRotation = CurrentInspectActor->GetActorRotation();
+	FRotator CurrentRotation = CurrentActor->GetActorRotation();
 
 	FRotator InspectRotation;
 	InspectRotation.Pitch = RotateAxis.Y;
@@ -229,7 +229,7 @@ void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 
 	FRotator NewRotation = UKismetMathLibrary::ComposeRotators(CurrentRotation, InspectRotation);
 
-	CurrentInspectActor->SetActorRotation(NewRotation);
+	CurrentActor->SetActorRotation(NewRotation);
 }
 
 void AHorrorGameCharacter::Tick(float DeltaTime)
@@ -263,28 +263,28 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 				switch (HitObject->ActiveInterface)
 				{
 				case EInterfaceType::Inspect:
-					CurrentInspectActor = HitObject;
+					CurrentActor = HitObject;
 					PlayerWidget->SetPromptInspect(true);
 					PlayerWidget->SetPromptPick(false);
 					PlayerWidget->SetPromptInteract(false);
 					break;
 
 				case EInterfaceType::Pickup:
-					CurrentInspectActor = HitObject;
+					CurrentActor = HitObject;
 					PlayerWidget->SetPromptPick(true);
 					PlayerWidget->SetPromptInspect(false);
 					PlayerWidget->SetPromptInteract(false);
 					break;
 
 				case EInterfaceType::Interact:
-					CurrentInspectActor = HitObject;
+					CurrentActor = HitObject;
 					PlayerWidget->SetPromptPick(false);
 					PlayerWidget->SetPromptInspect(false);
 					PlayerWidget->SetPromptInteract(true);
 					break;
 
 				default:
-					CurrentInspectActor = nullptr;
+					CurrentActor = nullptr;
 					PlayerWidget->SetPromptPick(false);
 					PlayerWidget->SetPromptInspect(false);
 					PlayerWidget->SetPromptInteract(false);
@@ -294,7 +294,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 		}
 		else
 		{
-			CurrentInspectActor = nullptr;
+			CurrentActor = nullptr;
 			PlayerWidget->SetPromptPick(false);
 			PlayerWidget->SetPromptInspect(false);
 			PlayerWidget->SetPromptInteract(false);
@@ -350,14 +350,14 @@ void AHorrorGameCharacter::ResetMovementVector()
 
 void AHorrorGameCharacter::PickUp()
 {
-	if (IsValid(CurrentInspectActor))
+	if (IsValid(CurrentActor))
 	{
-		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentActor);
 
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Pickup)
 		{
 			HitObject->OnPickUp();
-			CurrentInspectActor = nullptr;
+			CurrentActor = nullptr;
 			HitObject->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 			HitObject->AttachToComponent(
 			   Mesh1P, 
@@ -371,14 +371,14 @@ void AHorrorGameCharacter::PickUp()
 
 void AHorrorGameCharacter::Interact()
 {
-	if (IsValid(CurrentInspectActor))
+	if (IsValid(CurrentActor))
 	{
-		ABaseObject* HitObject = Cast<ABaseObject>(CurrentInspectActor);
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentActor);
 	
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Interact)
 		{
 			HitObject->OnInteract();
-			CurrentInspectActor = nullptr;
+			CurrentActor = nullptr;
 		}
 	}
 }

@@ -144,7 +144,7 @@ private:
 	TSubclassOf<UUserWidget> PlayerWidgetClass;
 
 	bool IsInspecting;
-	AActor* CurrentInspectActor;
+	AActor* CurrentActor;
 	FTransform InitialInspectTransform;
 	bool IsMoving;
 	FTimerHandle FootstepTimerHandle;
