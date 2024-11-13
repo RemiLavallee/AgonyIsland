@@ -72,6 +72,9 @@ class AHorrorGameCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* InspectMappingContext;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* RunAction;
+
 public:
 	AHorrorGameCharacter();
 
@@ -110,6 +113,10 @@ protected:
 	void Interact();
 
 	void Crouch();
+
+	void Run();
+
+	void ResetMovementSpeed();
 
 	UFUNCTION()
 	void UpdateCrouchTransition(float Value);

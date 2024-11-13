@@ -122,6 +122,11 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this,
 										   &AHorrorGameCharacter::Crouch);
+		
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::Run);
+
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this,
+										   &AHorrorGameCharacter::ResetMovementSpeed);
 	}
 	else
 	{
@@ -397,6 +402,16 @@ void AHorrorGameCharacter::Crouch()
 	}
 
 	bIsCrouching = !bIsCrouching;
+}
+
+void AHorrorGameCharacter::Run()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+}
+
+void AHorrorGameCharacter::ResetMovementSpeed()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
