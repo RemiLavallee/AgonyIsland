@@ -37,6 +37,7 @@ void ABaseObject::OnInspect()
 
 void ABaseObject::OnInteract()
 {
+	
 }
 
 void ABaseObject::InitializeFromDataTable()

@@ -46,7 +46,7 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 	InspectOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("InspectOrigin"));
-	InspectOrigin->SetupAttachment(FirstPersonCameraComponent);
+	InspectOrigin->SetupAttachment(RootComponent);
 	InspectOrigin->SetRelativeLocation(FVector(40.f, 0.f, 0.f));
 
 	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
@@ -54,8 +54,12 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	AudioComponent->bAutoActivate = false;
 
 	FlashLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("FlashLight"));
-	FlashLight->SetupAttachment(FirstPersonCameraComponent);
+	FlashLight->SetupAttachment(Mesh1P, TEXT("RightHandSocket"));
 	FlashLight->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
+
+	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
+	ItemOffset->SetupAttachment(Mesh1P);
+	ItemOffset->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 }
 
 void AHorrorGameCharacter::BeginPlay()
@@ -354,6 +358,13 @@ void AHorrorGameCharacter::PickUp()
 		{
 			HitObject->OnPickUp();
 			CurrentInspectActor = nullptr;
+			HitObject->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			HitObject->AttachToComponent(
+			   Mesh1P, 
+			   FAttachmentTransformRules::SnapToTargetIncludingScale, 
+			   TEXT("RightHandSocket")
+		   );
+			HitObject->SetActorEnableCollision(false);
 		}
 	}
 }

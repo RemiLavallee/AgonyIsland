@@ -45,6 +45,9 @@ class AHorrorGameCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inspect, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* InspectOrigin;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Item, meta = (AllowPrivateAccess = "true"))
+	USceneComponent* ItemOffset;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* EnterInspectAction;
 
