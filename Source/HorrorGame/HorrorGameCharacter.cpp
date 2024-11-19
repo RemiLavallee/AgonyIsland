@@ -259,7 +259,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 			ABaseObject* HitObject = Cast<ABaseObject>(Hit.GetActor());
 			if (HitObject && !HitObject->Tags.Contains(FName("IgnoreLineTrace")))
 			{
-				DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.f, 0, 1.f);
+				//DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.f, 0, 1.f);
 				FString HitActorName = Hit.GetActor()->GetName();
 				if (GEngine)
 				{
@@ -393,7 +393,7 @@ void AHorrorGameCharacter::ToggleCrouch()
 	if (bIsCrouching)
 	{
 		CrouchTimeline.Reverse();
-		GetCharacterMovement()->MaxWalkSpeed = 500.f;
+		GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	}
 	else
 	{
@@ -406,16 +406,25 @@ void AHorrorGameCharacter::ToggleCrouch()
 
 void AHorrorGameCharacter::Run()
 {
-	if(!bIsCrouching)
+	if(bIsCrouching)
 	{
-		GetCharacterMovement()->MaxWalkSpeed = 600.f;
-		Mesh1P->SetRelativeLocation(FVector(185.f, 0.f, -186.f));
+		return;
 	}
+
+	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	Mesh1P->SetRelativeLocation(FVector(185.f, 0.f, -186.f));
 }
 
 void AHorrorGameCharacter::ResetMovementSpeed()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 400.f;
+	if(bIsCrouching)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 200.f;
+	}
+	else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 400.f;
+	}
 	Mesh1P->SetRelativeLocation(FVector(209.f, 0.f, -142.f));
 }
 
