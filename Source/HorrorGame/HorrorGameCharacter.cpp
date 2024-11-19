@@ -12,8 +12,6 @@
 #include "PlayerWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
-#include "InterfaceInspect.h"
-#include "InterfacePickUp.h"
 #include "BaseObject.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
