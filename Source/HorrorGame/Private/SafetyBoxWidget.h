@@ -57,7 +57,7 @@ public:
 	void UpdateFirstText(UTextBlock* Text);
 	void UpdateSecondtText(UTextBlock* Text);
 	void UpdateThirdText(UTextBlock* Text);
-	void SetInputModeGameOnly(APlayerController* PlayerController);
+	void SetInputModeGameOnly(APlayerController* PlayerControl);
 
 	int FirstCounter;
 	int SecondCounter;

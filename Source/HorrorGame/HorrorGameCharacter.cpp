@@ -13,6 +13,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
 #include "BaseObject.h"
+#include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -64,7 +65,7 @@ void AHorrorGameCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
-
+	
 	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerWidgetClass);
 	PlayerWidget = Cast<UPlayerWidget>(UserWidget);
 	PlayerWidget->AddToViewport();
@@ -125,6 +126,8 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this,
 										   &AHorrorGameCharacter::ResetMovementSpeed);
+
+		EnhancedInputComponent->BindAction(OpenOptionsAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::OpenMenuOptions);
 	}
 	else
 	{
@@ -261,7 +264,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 				FString HitActorName = Hit.GetActor()->GetName();
 				if (GEngine)
 				{
-					GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Hit Object: %s"), *HitActorName));
+					//GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Hit Object: %s"), *HitActorName));
 				}
 				switch (HitObject->ActiveInterface)
 				{
@@ -308,7 +311,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 	{
 		if (IsMoving)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Stopping footsteps sound"));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Stopping footsteps sound"));
 			StopFootstepsSound();
 		}
 		IsMoving = false;
@@ -318,7 +321,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 		if (!IsMoving)
 		{
 			StartFootstepsSound();
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Starting footsteps sound"));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Starting footsteps sound"));
 		}
 		IsMoving = true;
 	}
@@ -412,6 +415,13 @@ void AHorrorGameCharacter::ResetMovementSpeed()
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 }
 
+void AHorrorGameCharacter::OpenMenuOptions()
+{
+	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), OptionsWidgetClass);
+	OptionsWidget = Cast<UOptionsWidget>(UserWidget);
+	OptionsWidget->AddToViewport();
+}
+
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
 {
 	float NewCapsuleHalfHeight = FMath::Lerp(NormalCapsuleHalfHeight, CrouchedCapsuleHalfHeight, Value);
@@ -420,3 +430,5 @@ void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
 	float NewCameraHeight = FMath::Lerp(NormalCameraHeight, CrouchedCameraHeight, Value);
 	FirstPersonCameraComponent->SetRelativeLocation(FVector(-10.f, 0.f, NewCameraHeight));
 }
+
+

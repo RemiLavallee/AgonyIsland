@@ -75,6 +75,9 @@ class AHorrorGameCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* RunAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* OpenOptionsAction;
+
 public:
 	AHorrorGameCharacter();
 
@@ -118,6 +121,8 @@ protected:
 
 	void ResetMovementSpeed();
 
+	void OpenMenuOptions();
+
 	UFUNCTION()
 	void UpdateCrouchTransition(float Value);
 
@@ -149,6 +154,12 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> PlayerWidgetClass;
+
+	UPROPERTY()
+	class UOptionsWidget* OptionsWidget;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOptionsWidget> OptionsWidgetClass;
 
 	bool IsInspecting;
 	AActor* CurrentActor;

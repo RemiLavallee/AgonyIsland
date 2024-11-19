@@ -32,6 +32,9 @@ void UMainMenuWidget::NativeConstruct()
 
 void UMainMenuWidget::OnPlayButton()
 {
+	FInputModeGameOnly InputMode;
+	PlayerController->SetInputMode(InputMode);
+	PlayerController->bShowMouseCursor = false;
 	OpenLevel();
 }
 
