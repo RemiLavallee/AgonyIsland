@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "HorrorGameCharacter.h"
-#include "HorrorGameProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -120,7 +119,7 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 										   &AHorrorGameCharacter::PickUp);
 
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this,
-										   &AHorrorGameCharacter::Crouch);
+										   &AHorrorGameCharacter::ToggleCrouch);
 		
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::Run);
 
@@ -389,7 +388,7 @@ void AHorrorGameCharacter::Interact()
 	}
 }
 
-void AHorrorGameCharacter::Crouch()
+void AHorrorGameCharacter::ToggleCrouch()
 {
 	if (bIsCrouching)
 	{
@@ -407,12 +406,17 @@ void AHorrorGameCharacter::Crouch()
 
 void AHorrorGameCharacter::Run()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	if(!bIsCrouching)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 600.f;
+		Mesh1P->SetRelativeLocation(FVector(185.f, 0.f, -186.f));
+	}
 }
 
 void AHorrorGameCharacter::ResetMovementSpeed()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
+	Mesh1P->SetRelativeLocation(FVector(209.f, 0.f, -142.f));
 }
 
 void AHorrorGameCharacter::OpenMenuOptions()

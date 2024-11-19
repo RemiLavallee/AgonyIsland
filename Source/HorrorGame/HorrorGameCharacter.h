@@ -115,7 +115,7 @@ protected:
 
 	void Interact();
 
-	void Crouch();
+	void ToggleCrouch();
 
 	void Run();
 
