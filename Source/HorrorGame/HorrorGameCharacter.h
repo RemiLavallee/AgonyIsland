@@ -31,9 +31,6 @@ class AHorrorGameCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FirstPersonCameraComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Light, meta = (AllowPrivateAccess = "true"))
-	USpotLightComponent* FlashLight;
-
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
@@ -77,6 +74,12 @@ class AHorrorGameCharacter : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* OpenOptionsAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* DropItemAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* ToggleFlashLightAction;
 
 public:
 	AHorrorGameCharacter();
@@ -123,10 +126,13 @@ protected:
 
 	void OpenMenuOptions();
 
+	void DropItem();
+
+	void ToggleFlashLight();
+
 	UFUNCTION()
 	void UpdateCrouchTransition(float Value);
-
-protected:
+	
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
@@ -148,6 +154,8 @@ public:
 	
 	bool IsCrouching() const { return bIsCrouching; }
 
+	void PickUpFlashLight(class AFlashLight* FlashLight);
+
 private:
 	UPROPERTY()
 	class UPlayerWidget* PlayerWidget;
@@ -160,6 +168,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UOptionsWidget> OptionsWidgetClass;
+
+	UPROPERTY()
+	class AFlashLight* EquippedFlashlight;
 
 	bool IsInspecting;
 	AActor* CurrentActor;

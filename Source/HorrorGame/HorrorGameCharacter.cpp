@@ -12,6 +12,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Engine/LocalPlayer.h"
 #include "BaseObject.h"
+#include "FlashLight.h"
 #include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -51,10 +52,6 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
 	AudioComponent->SetupAttachment(RootComponent);
 	AudioComponent->bAutoActivate = false;
-
-	FlashLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("FlashLight"));
-	FlashLight->SetupAttachment(Mesh1P, TEXT("FlashLightSocket"));
-	FlashLight->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
 	ItemOffset->SetupAttachment(Mesh1P);
@@ -128,6 +125,10 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 										   &AHorrorGameCharacter::ResetMovementSpeed);
 
 		EnhancedInputComponent->BindAction(OpenOptionsAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::OpenMenuOptions);
+
+		EnhancedInputComponent->BindAction(DropItemAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::DropItem);
+
+		EnhancedInputComponent->BindAction(ToggleFlashLightAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::ToggleFlashLight);
 	}
 	else
 	{
@@ -436,6 +437,20 @@ void AHorrorGameCharacter::OpenMenuOptions()
 	OptionsWidget = Cast<UOptionsWidget>(UserWidget);
 	OptionsWidget->AddToViewport();
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
+}
+
+void AHorrorGameCharacter::DropItem()
+{
+}
+
+void AHorrorGameCharacter::ToggleFlashLight()
+{
+	if (EquippedFlashlight)	EquippedFlashlight->ToggleLight();
+}
+
+void AHorrorGameCharacter::PickUpFlashLight(AFlashLight* FlashLight)
+{
+	EquippedFlashlight = FlashLight;
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)

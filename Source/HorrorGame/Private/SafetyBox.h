@@ -16,8 +16,7 @@ class ASafetyBox : public ABaseObject
 	GENERATED_BODY()
 public:
 	ASafetyBox();
-
-public:
+	
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
 

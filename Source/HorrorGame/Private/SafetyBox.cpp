@@ -2,8 +2,6 @@
 
 
 #include "SafetyBox.h"
-
-#include "MaterialHLSLTree.h"
 #include "SafetyBoxWidget.h"
 #include "Blueprint/UserWidget.h"
 
