@@ -28,6 +28,7 @@ void UOptionsWidget::NativeConstruct()
 void UOptionsWidget::OnResumeButton()
 {
 	this->RemoveFromParent();
+	UGameplayStatics::SetGamePaused(GetWorld(), false);
 	SetInputModeGame(PlayerController);
 }
 

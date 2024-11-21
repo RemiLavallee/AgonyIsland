@@ -15,6 +15,7 @@
 #include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Sound/SoundCue.h"
 
@@ -52,7 +53,7 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	AudioComponent->bAutoActivate = false;
 
 	FlashLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("FlashLight"));
-	FlashLight->SetupAttachment(Mesh1P, TEXT("RightHandSocket"));
+	FlashLight->SetupAttachment(Mesh1P, TEXT("FlashLightSocket"));
 	FlashLight->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
@@ -172,6 +173,7 @@ void AHorrorGameCharacter::EnterInspect()
 		
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Inspect)
 		{
+			
 			IsInspecting = true;
 
 			PlayerWidget->SetPromptInspect(false);
@@ -433,6 +435,7 @@ void AHorrorGameCharacter::OpenMenuOptions()
 	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), OptionsWidgetClass);
 	OptionsWidget = Cast<UOptionsWidget>(UserWidget);
 	OptionsWidget->AddToViewport();
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
