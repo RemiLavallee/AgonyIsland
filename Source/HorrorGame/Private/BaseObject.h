@@ -42,6 +42,7 @@ public:
 	virtual void OnPickUp() override;
 	virtual void OnInspect() override;
 	virtual void OnInteract() override;
+	virtual void DropItem();
 
 	EInterfaceType ActiveInterface;
 

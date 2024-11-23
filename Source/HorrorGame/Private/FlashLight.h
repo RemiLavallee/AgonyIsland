@@ -29,10 +29,12 @@ public:
 	USpotLightComponent* Light;
 
 	void ToggleLight();
+	void DisablePhysics();
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void OnPickUp() override;
+	virtual void DropItem() override;
 
 private:
 	

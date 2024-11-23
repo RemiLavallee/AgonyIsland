@@ -14,13 +14,14 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Input/IMC_Default.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FlashLight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_FlashLight.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -588,6 +589,9 @@
       <workItem from="1732148956743" duration="131000" />
       <workItem from="1732149226240" duration="3156000" />
       <workItem from="1732212239135" duration="7371000" />
+      <workItem from="1732288249299" duration="6386000" />
+      <workItem from="1732303087334" duration="3134000" />
+      <workItem from="1732330716967" duration="373000" />
     </task>
     <servers />
   </component>

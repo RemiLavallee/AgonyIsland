@@ -40,6 +40,10 @@ void ABaseObject::OnInteract()
 	
 }
 
+void ABaseObject::DropItem()
+{
+}
+
 void ABaseObject::InitializeFromDataTable()
 {
 	static const FString Context = TEXT("Object Initialization");

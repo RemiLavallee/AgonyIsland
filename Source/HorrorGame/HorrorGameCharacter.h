@@ -126,8 +126,6 @@ protected:
 
 	void OpenMenuOptions();
 
-	void DropItem();
-
 	void ToggleFlashLight();
 
 	UFUNCTION()
@@ -154,7 +152,11 @@ public:
 	
 	bool IsCrouching() const { return bIsCrouching; }
 
-	void PickUpFlashLight(class AFlashLight* FlashLight);
+	void PickUpFlashLight(class ABaseObject* Items);
+
+	void Drop(class ABaseObject* Items);
+
+	void DropItem();
 
 private:
 	UPROPERTY()
@@ -171,6 +173,9 @@ private:
 
 	UPROPERTY()
 	class AFlashLight* EquippedFlashlight;
+
+	UPROPERTY()
+	class ABaseObject* EquippedItem;
 
 	bool IsInspecting;
 	AActor* CurrentActor;

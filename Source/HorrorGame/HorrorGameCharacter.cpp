@@ -56,6 +56,11 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
 	ItemOffset->SetupAttachment(Mesh1P);
 	ItemOffset->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
+
+	CurrentActor = nullptr;
+	EquippedItem = nullptr;
+	IsMoving = false;
+	bIsCrouching = false;
 }
 
 void AHorrorGameCharacter::BeginPlay()
@@ -66,9 +71,6 @@ void AHorrorGameCharacter::BeginPlay()
 	auto UserWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerWidgetClass);
 	PlayerWidget = Cast<UPlayerWidget>(UserWidget);
 	PlayerWidget->AddToViewport();
-
-	IsMoving = false;
-	bIsCrouching = false;
 
 	if (CrouchCurve)
 	{
@@ -441,16 +443,36 @@ void AHorrorGameCharacter::OpenMenuOptions()
 
 void AHorrorGameCharacter::DropItem()
 {
+	ABaseObject* FlashLight = Cast<ABaseObject>(EquippedItem);
+	FlashLight->DropItem();
+}
+
+void AHorrorGameCharacter::Drop(ABaseObject* Items)
+{
+	if (!Items) return;
+	Items->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	FVector ForwardVector = GetActorForwardVector();
+	FVector DropLocation = GetActorLocation() + ForwardVector * 100.0f;
+	DropLocation.Z -= 50.0f;
+	Items->SetActorLocation(DropLocation);
+	Items->SetActorEnableCollision(true);
+	
+	EquippedItem = nullptr;
+	
 }
 
 void AHorrorGameCharacter::ToggleFlashLight()
 {
-	if (EquippedFlashlight)	EquippedFlashlight->ToggleLight();
+	auto FlashLight = Cast<AFlashLight>(EquippedItem);
+	if (FlashLight) FlashLight->ToggleLight();
+
 }
 
-void AHorrorGameCharacter::PickUpFlashLight(AFlashLight* FlashLight)
+void AHorrorGameCharacter::PickUpFlashLight(ABaseObject* Items)
 {
-	EquippedFlashlight = FlashLight;
+	AFlashLight* FlashLight = Cast<AFlashLight>(Items);
+
+	if (FlashLight) EquippedItem = FlashLight;
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
