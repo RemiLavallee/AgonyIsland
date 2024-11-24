@@ -54,7 +54,7 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	AudioComponent->bAutoActivate = false;
 
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
-	ItemOffset->SetupAttachment(Mesh1P);
+	ItemOffset->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("RightHandSocket"));
 	ItemOffset->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 
 	CurrentActor = nullptr;
@@ -265,7 +265,7 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 			if (HitObject && !HitObject->Tags.Contains(FName("IgnoreLineTrace")))
 			{
 				//DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1.f, 0, 1.f);
-				FString HitActorName = Hit.GetActor()->GetName();
+				//FString HitActorName = Hit.GetActor()->GetName();
 				if (GEngine)
 				{
 					//GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Hit Object: %s"), *HitActorName));
@@ -334,6 +334,16 @@ void AHorrorGameCharacter::Tick(float DeltaTime)
 	{
 		CrouchTimeline.TickTimeline(DeltaTime);
 	}
+	
+	if (EquippedItem)
+	{
+		FTransform SocketTransform = Mesh1P->GetSocketTransform(TEXT("RightHandSocket"), RTS_World);
+
+		EquippedItem->SetActorLocation(SocketTransform.GetLocation());
+		EquippedItem->SetActorRotation(SocketTransform.GetRotation().Rotator());
+		EquippedItem->SetActorScale3D(SocketTransform.GetScale3D());
+	}
+	
 }
 
 void AHorrorGameCharacter::StartFootstepsSound()
@@ -360,22 +370,14 @@ void AHorrorGameCharacter::ResetMovementVector()
 
 void AHorrorGameCharacter::PickUp()
 {
-	if (IsValid(CurrentActor))
-	{
-		ABaseObject* HitObject = Cast<ABaseObject>(CurrentActor);
+	if (!CurrentActor) return;
 
-		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Pickup)
-		{
-			HitObject->OnPickUp();
-			CurrentActor = nullptr;
-			HitObject->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-			HitObject->AttachToComponent(
-			   Mesh1P, 
-			   FAttachmentTransformRules::SnapToTargetIncludingScale, 
-			   TEXT("RightHandSocket")
-		   );
-			HitObject->SetActorEnableCollision(false);
-		}
+	ABaseObject* Object = Cast<ABaseObject>(CurrentActor);
+	if (Object)
+	{
+		Object->PickUp(ItemOffset);
+		EquippedItem = Object;
+		CurrentActor = nullptr;
 	}
 }
 
@@ -443,36 +445,21 @@ void AHorrorGameCharacter::OpenMenuOptions()
 
 void AHorrorGameCharacter::DropItem()
 {
-	ABaseObject* FlashLight = Cast<ABaseObject>(EquippedItem);
-	FlashLight->DropItem();
-}
+	if (!EquippedItem) return;
 
-void AHorrorGameCharacter::Drop(ABaseObject* Items)
-{
-	if (!Items) return;
-	Items->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-	FVector ForwardVector = GetActorForwardVector();
-	FVector DropLocation = GetActorLocation() + ForwardVector * 100.0f;
-	DropLocation.Z -= 50.0f;
-	Items->SetActorLocation(DropLocation);
-	Items->SetActorEnableCollision(true);
-	
+	FVector Forward = GetActorForwardVector();
+	FVector DropLocation = GetActorLocation() + Forward * 100.f;
+
+	EquippedItem->Drop(DropLocation);
 	EquippedItem = nullptr;
-	
 }
 
 void AHorrorGameCharacter::ToggleFlashLight()
 {
 	auto FlashLight = Cast<AFlashLight>(EquippedItem);
+	UE_LOG(LogTemp, Warning, TEXT("Flashlight toggled"));
 	if (FlashLight) FlashLight->ToggleLight();
 
-}
-
-void AHorrorGameCharacter::PickUpFlashLight(ABaseObject* Items)
-{
-	AFlashLight* FlashLight = Cast<AFlashLight>(Items);
-
-	if (FlashLight) EquippedItem = FlashLight;
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)

@@ -19,22 +19,11 @@ public:
 		
 	AFlashLight();
 	
-	UPROPERTY(VisibleAnywhere)
-	USceneComponent* Root;
-
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* FlashLightMesh;
-
 	UPROPERTY(visibleAnywhere, Category = "Light")
 	USpotLightComponent* Light;
 
 	void ToggleLight();
-	void DisablePhysics();
-
-protected:
 	virtual void BeginPlay() override;
-	virtual void OnPickUp() override;
-	virtual void DropItem() override;
 
 private:
 	

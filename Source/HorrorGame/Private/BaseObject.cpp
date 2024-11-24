@@ -10,7 +10,10 @@ ABaseObject::ABaseObject()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-	RootComponent = StaticMeshComp;
+	SetRootComponent(StaticMeshComp);
+	
+	bIsPickedUp = false;
+	AttachedComponent = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -25,6 +28,13 @@ void ABaseObject::BeginPlay()
 void ABaseObject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	
+	if (bIsPickedUp && AttachedComponent)
+	{
+		SetActorLocation(AttachedComponent->GetComponentLocation());
+		SetActorRotation(AttachedComponent->GetComponentRotation());
+	}
 }
 
 void ABaseObject::OnPickUp()
@@ -44,6 +54,31 @@ void ABaseObject::DropItem()
 {
 }
 
+void ABaseObject::PickUp(USceneComponent* AttachTo)
+{
+	if (!AttachTo) return;
+
+	AttachToComponent(AttachTo, FAttachmentTransformRules::SnapToTargetIncludingScale);
+	AttachedComponent = AttachTo;
+
+	StaticMeshComp->SetSimulatePhysics(false);
+	StaticMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	bIsPickedUp = true;
+}
+
+void ABaseObject::Drop(const FVector& DropLocation)
+{
+	DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+	StaticMeshComp->SetSimulatePhysics(true);
+	StaticMeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+	SetActorLocation(DropLocation);
+	bIsPickedUp = false;
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_ResetObject, this, &ABaseObject::ResetObjectProperties, 0.5f, false);
+}
+
 void ABaseObject::InitializeFromDataTable()
 {
 	static const FString Context = TEXT("Object Initialization");
@@ -51,11 +86,7 @@ void ABaseObject::InitializeFromDataTable()
 
 	if (Row->Mesh)
 	{
-		UStaticMeshComponent* MeshComp = FindComponentByClass<UStaticMeshComponent>();
-		if (MeshComp)
-		{
-			MeshComp->SetStaticMesh(Row->Mesh);
-		}
+		StaticMeshComp->SetStaticMesh(Row->Mesh);
 	}
 
 	ActiveInterface = EInterfaceType::None;
@@ -90,4 +121,12 @@ void ABaseObject::AssignMeshFromDataTable()
 	FStructObjectData* Row = DataTable->FindRow<FStructObjectData>(RowName, ContextString);
 
 	StaticMeshComp->SetStaticMesh(Row->Mesh);
+}
+
+void ABaseObject::ResetObjectProperties()
+{
+	StaticMeshComp->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	StaticMeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	StaticMeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+	StaticMeshComp->SetSimulatePhysics(false);
 }

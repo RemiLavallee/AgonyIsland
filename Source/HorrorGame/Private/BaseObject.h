@@ -22,6 +22,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY()
+	USceneComponent* AttachedComponent;
 
 public:	
 	// Called every frame
@@ -43,12 +45,19 @@ public:
 	virtual void OnInspect() override;
 	virtual void OnInteract() override;
 	virtual void DropItem();
+	virtual void PickUp(USceneComponent* AttachTo);
+	virtual void Drop(const FVector& DropLocation);
+	
 
 	EInterfaceType ActiveInterface;
+	bool bIsPickedUp;
 
 private:
 	void InitializeFromDataTable();
 	
 	UFUNCTION(CallInEditor, Category = "Objects")
 	void AssignMeshFromDataTable();
+
+	FTimerHandle TimerHandle_ResetObject;
+	void ResetObjectProperties();
 };
