@@ -9,9 +9,6 @@ ASafetyBox::ASafetyBox()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	RootComponent = Root;
-
 	SafetyBoxMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SafetyBox"));
 	SafetyBoxMesh->SetupAttachment(Root);
 	

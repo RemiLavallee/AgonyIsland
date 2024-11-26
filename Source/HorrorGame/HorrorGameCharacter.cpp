@@ -54,7 +54,7 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	AudioComponent->bAutoActivate = false;
 
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
-	ItemOffset->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("RightHandSocket"));
+	ItemOffset->SetupAttachment(Mesh1P, TEXT("RightHandSocket"));
 	ItemOffset->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 
 	CurrentActor = nullptr;
@@ -176,14 +176,11 @@ void AHorrorGameCharacter::EnterInspect()
 		
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Inspect)
 		{
-			
+			HitObject->OnInspect();
 			IsInspecting = true;
-
 			PlayerWidget->SetPromptInspect(false);
 			InspectOrigin->SetRelativeRotation(FRotator::ZeroRotator);
-			InitialInspectTransform = HitObject->GetActorTransform();
-			HitObject->AttachToComponent(InspectOrigin,
-			                                       FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			HitObject->AttachToComponent(InspectOrigin, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
 			auto PlayerController = Cast<APlayerController>(GetController());
 			auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
@@ -222,24 +219,21 @@ void AHorrorGameCharacter::ExitInspect()
 
 void AHorrorGameCharacter::RotateInspect(const FInputActionValue& Value)
 {
-	if (!IsValid(CurrentActor))
-	{
-		UE_LOG(LogTemplateCharacter, Warning, TEXT("RotateInspect called but CurrentInspectActor is null!"));
-		return;
-	}
+	if (!IsValid(CurrentActor)) return;
 
 	FVector2D RotateAxis = Value.Get<FVector2D>();
 
-	FRotator CurrentRotation = CurrentActor->GetActorRotation();
+	UStaticMeshComponent* MeshComponent = CurrentActor->FindComponentByClass<UStaticMeshComponent>();
+	FRotator CurrentRotation = MeshComponent->GetRelativeRotation();
 
 	FRotator InspectRotation;
-	InspectRotation.Pitch = RotateAxis.Y;
-	InspectRotation.Yaw = RotateAxis.X * -1.0f;
+	InspectRotation.Pitch += RotateAxis.Y * -1.0f;
+	InspectRotation.Yaw += RotateAxis.X * -1.0f;
 	InspectRotation.Roll = 0.0f;
 
 	FRotator NewRotation = UKismetMathLibrary::ComposeRotators(CurrentRotation, InspectRotation);
 
-	CurrentActor->SetActorRotation(NewRotation);
+	MeshComponent->SetRelativeRotation(NewRotation);
 }
 
 void AHorrorGameCharacter::Tick(float DeltaTime)
@@ -457,7 +451,6 @@ void AHorrorGameCharacter::DropItem()
 void AHorrorGameCharacter::ToggleFlashLight()
 {
 	auto FlashLight = Cast<AFlashLight>(EquippedItem);
-	UE_LOG(LogTemp, Warning, TEXT("Flashlight toggled"));
 	if (FlashLight) FlashLight->ToggleLight();
 
 }
@@ -470,5 +463,3 @@ void AHorrorGameCharacter::UpdateCrouchTransition(float Value)
 	float NewCameraHeight = FMath::Lerp(NormalCameraHeight, CrouchedCameraHeight, Value);
 	FirstPersonCameraComponent->SetRelativeLocation(FVector(-10.f, 0.f, NewCameraHeight));
 }
-
-

@@ -37,6 +37,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objects")
 	TSubclassOf<AActor> AssociatedBlueprint;
+
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* Root;
 	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMeshComp;

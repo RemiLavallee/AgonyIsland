@@ -152,25 +152,19 @@ public:
 	
 	bool IsCrouching() const { return bIsCrouching; }
 
-	void PickUpFlashLight(class ABaseObject* Items);
-
-	void Drop(class ABaseObject* Items);
-
 	void DropItem();
 
 private:
 	UPROPERTY()
 	class UPlayerWidget* PlayerWidget;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> PlayerWidgetClass;
-
+	
 	UPROPERTY()
 	class UOptionsWidget* OptionsWidget;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UOptionsWidget> OptionsWidgetClass;
-
+	
 	UPROPERTY()
 	class AFlashLight* EquippedFlashlight;
 
@@ -189,5 +183,6 @@ private:
 	float NormalCameraHeight = 60.0f;
 	float CrouchedCameraHeight = 30.0f;
 	bool bIsCrouching;
+	
 };
 

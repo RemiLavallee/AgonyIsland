@@ -16,9 +16,6 @@ class ASafetyBox : public ABaseObject
 	GENERATED_BODY()
 public:
 	ASafetyBox();
-	
-	UPROPERTY(VisibleAnywhere)
-	USceneComponent* Root;
 
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* SafetyBoxMesh;
