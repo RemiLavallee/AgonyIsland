@@ -23,7 +23,6 @@ ABaseObject::ABaseObject()
 void ABaseObject::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Log, TEXT("BeginPlay called for: %s, RowName: %s"), *GetName(), *RowName.ToString());
 	InitializeFromDataTable();
 }
 
@@ -113,7 +112,6 @@ void ABaseObject::InitializeFromDataTable()
 		break;
 
 	default:
-		UE_LOG(LogTemp, Log, TEXT("No interface set for this object"));
 		break;
 	}
 }

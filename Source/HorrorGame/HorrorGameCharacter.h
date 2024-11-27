@@ -174,6 +174,7 @@ private:
 	bool IsInspecting;
 	AActor* CurrentActor;
 	FTransform InitialInspectTransform;
+	FTransform InitialStaticMeshTransform;
 	bool IsMoving;
 	FTimerHandle FootstepTimerHandle;
 	FVector2D CurrentMovementVector;

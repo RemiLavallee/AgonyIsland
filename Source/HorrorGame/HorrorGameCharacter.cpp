@@ -19,6 +19,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Sound/SoundCue.h"
+#include "Letter_Base.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -176,11 +177,13 @@ void AHorrorGameCharacter::EnterInspect()
 		
 		if (HitObject && HitObject->ActiveInterface == EInterfaceType::Inspect)
 		{
-			HitObject->OnInspect();
 			IsInspecting = true;
 			PlayerWidget->SetPromptInspect(false);
+			InitialInspectTransform = CurrentActor->GetActorTransform();
+			InitialStaticMeshTransform = HitObject->StaticMeshComp->GetRelativeTransform();
 			InspectOrigin->SetRelativeRotation(FRotator::ZeroRotator);
 			HitObject->AttachToComponent(InspectOrigin, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			HitObject->OnInspect();
 
 			auto PlayerController = Cast<APlayerController>(GetController());
 			auto InputSubSystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(
@@ -197,15 +200,18 @@ void AHorrorGameCharacter::ExitInspect()
 	{
 		IsInspecting = false;
 
-		if (CurrentActor)
+		ABaseObject* HitObject = Cast<ABaseObject>(CurrentActor);
+
+		if (HitObject)
 		{
-			CurrentActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
-
-			if (InitialInspectTransform.IsValid())
+			if (auto LetterActor = Cast<ALetter_Base>(CurrentActor))
 			{
-				CurrentActor->SetActorTransform(InitialInspectTransform);
+				LetterActor->CloseWidget();
 			}
-
+			HitObject->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			HitObject->StaticMeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			HitObject->SetActorTransform(InitialInspectTransform);
+			HitObject->StaticMeshComp->SetRelativeTransform(InitialStaticMeshTransform);
 			CurrentActor = nullptr;
 		}
 

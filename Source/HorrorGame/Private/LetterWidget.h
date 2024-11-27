@@ -14,20 +14,13 @@ class ULetterWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-protected:
-	UPROPERTY(meta = (BindWidget))
-	class UButton* ReadButton;
-	UPROPERTY(meta = (BindWidget))
-	UButton* CloseButton;
-	UPROPERTY(meta = (BindWidget))
-	class USizeBox* SizeBoxText;
-
 public:
-	virtual void NativeConstruct() override;
 	UFUNCTION()
-	void OnReadButton();
-	UFUNCTION()
-	void OnCloseButton();
+	void OnClose();
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* DescriptionText;
+	
+private:
+	UPROPERTY(meta = (BindWidget))
+	class UImage* ObjectImage;
 };

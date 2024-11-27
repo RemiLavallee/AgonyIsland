@@ -2,24 +2,11 @@
 
 
 #include "LetterWidget.h"
+#include "Components/Image.h"
+#include "Styling/SlateBrush.h"
 
-#include "Components/Button.h"
-#include "Components/SizeBox.h"
 
-void ULetterWidget::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	ReadButton->OnClicked.AddDynamic(this, &ULetterWidget::OnReadButton);
-	CloseButton->OnClicked.AddDynamic(this, &ULetterWidget::OnCloseButton);
-}
-
-void ULetterWidget::OnReadButton()
-{
-	SizeBoxText->SetVisibility(ESlateVisibility::Visible);
-}
-
-void ULetterWidget::OnCloseButton()
+void ULetterWidget::OnClose()
 {
 	RemoveFromParent();
 }

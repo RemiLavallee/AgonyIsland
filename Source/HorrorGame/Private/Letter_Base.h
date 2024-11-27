@@ -16,6 +16,11 @@ class ALetter_Base : public ABaseObject
 
 public:
 	ALetter_Base();
+	
+	void CloseWidget();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Capture")
+	USceneCaptureComponent2D* SceneCaptureComponent;
 
 private:
 	UPROPERTY()

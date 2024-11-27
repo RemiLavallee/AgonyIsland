@@ -35,9 +35,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Objects")
 	UDataTable* DataTable;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Objects")
-	TSubclassOf<AActor> AssociatedBlueprint;
-
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
 	
@@ -50,7 +47,6 @@ public:
 	virtual void DropItem();
 	virtual void PickUp(USceneComponent* AttachTo);
 	virtual void Drop(const FVector& DropLocation);
-	
 
 	EInterfaceType ActiveInterface;
 	bool bIsPickedUp;
