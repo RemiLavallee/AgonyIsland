@@ -373,7 +373,7 @@ void AHorrorGameCharacter::PickUp()
 	if (!CurrentActor) return;
 
 	ABaseObject* Object = Cast<ABaseObject>(CurrentActor);
-	if (Object)
+	if (Object && Object->ActiveInterface == EInterfaceType::Pickup)
 	{
 		Object->PickUp(ItemOffset);
 		EquippedItem = Object;

@@ -96,18 +96,15 @@ void ABaseObject::InitializeFromDataTable()
 
 	switch (ActiveInterface)
 	{
-	case EInterfaceType::Pickup:
-		UE_LOG(LogTemp, Log, TEXT("Object set as Pickup"));
+	case Row->InterfaceType == EInterfaceType::Pickup:
 		ActiveInterface = EInterfaceType::Pickup;
 		break;
 
-	case EInterfaceType::Inspect:
-		UE_LOG(LogTemp, Log, TEXT("Object set as Inspect"));
+	case Row->InterfaceType == EInterfaceType::Inspect:
 		ActiveInterface = EInterfaceType::Inspect;
 		break;
 
-	case EInterfaceType::Interact:
-		UE_LOG(LogTemp, Log, TEXT("Object set as Interact"));
+	case Row->InterfaceType == EInterfaceType::Interact:
 		ActiveInterface = EInterfaceType::Interact;
 		break;
 
