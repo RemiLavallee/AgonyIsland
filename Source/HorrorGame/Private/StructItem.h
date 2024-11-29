@@ -1,11 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InterfaceType.h"
 #include "StructItem.generated.h"
 
 
 USTRUCT(BlueprintType) 
-struct FStructItem
+struct FStructItem : public FTableRowBase
 {
 	GENERATED_BODY()
 
@@ -23,6 +24,8 @@ struct FStructItem
 	class UStaticMesh* ItemMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	class UTexture2D* ItemImage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Item")
+	EInterfaceType InterfaceType = EInterfaceType::None;
 
 	FStructItem()
 	: bItemInventory(false)

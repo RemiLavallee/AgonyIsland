@@ -15,9 +15,6 @@ class UItemSlotWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-	UFUNCTION()
-	void RefreshSlot(FStructItem Item);
-
 	UPROPERTY(meta = (BindWidget))
 	class UImage* InventorySlotImage;
 
@@ -29,5 +26,16 @@ class UItemSlotWidget : public UUserWidget
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* ItemCountText;
+
+public:
+	FStructItem Item;
+	int Index;
+
+	UFUNCTION()
+	void RefreshSlot(const FStructItem& NewItem);
 	
+	UPROPERTY()
+	class UInventoryWidget* InventoryWidget;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UInventoryWidget> InventoryWidgetClass;
 };

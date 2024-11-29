@@ -13,6 +13,7 @@
 #include "Engine/LocalPlayer.h"
 #include "BaseObject.h"
 #include "FlashLight.h"
+#include "InventoryComponent.h"
 #include "InventoryWidget.h"
 #include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
@@ -58,6 +59,8 @@ AHorrorGameCharacter::AHorrorGameCharacter()
 	ItemOffset = CreateDefaultSubobject<USceneComponent>(TEXT("ItemOffset"));
 	ItemOffset->SetupAttachment(Mesh1P, TEXT("RightHandSocket"));
 	ItemOffset->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
+
+	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
 
 	CurrentActor = nullptr;
 	EquippedItem = nullptr;
@@ -466,10 +469,7 @@ void AHorrorGameCharacter::ToggleFlashLight()
 
 void AHorrorGameCharacter::OpenInventory()
 {
-	auto Widget = CreateWidget<UUserWidget>(GetWorld(), InventoryWidgetClass);
-	InventoryWidget = Cast<UInventoryWidget>(Widget);
-
-	if (InventoryWidget) InventoryWidget->AddToViewport();
+	InventoryComponent->OpenWidget();
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)

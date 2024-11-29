@@ -9,20 +9,20 @@
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 
-void UItemSlotWidget::RefreshSlot(FStructItem Item)
+void UItemSlotWidget::RefreshSlot(const FStructItem& NewItem)
 {
-	if (Item.ItemImage->IsValidLowLevel())
+	if (NewItem.ItemImage->IsValidLowLevel())
 	{
-		InventorySlotImage->SetBrushFromTexture(Item.ItemImage);
+		InventorySlotImage->SetBrushFromTexture(NewItem.ItemImage);
 	}
 	else
 	{
 		ItemCountBorder->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	if (Item.bIsStackable)
+	if (NewItem.bIsStackable)
 	{
-		FText StackText = FText::AsNumber(Item.ItemStack);
+		FText StackText = FText::AsNumber(NewItem.ItemStack);
 		ItemCountText->SetText(StackText);
 	}
 	else

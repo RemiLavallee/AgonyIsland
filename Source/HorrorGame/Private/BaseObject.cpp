@@ -3,6 +3,8 @@
 
 #include "BaseObject.h"
 
+#include "StructItem.h"
+
 // Sets default values
 ABaseObject::ABaseObject()
 {
@@ -84,11 +86,11 @@ void ABaseObject::Drop(const FVector& DropLocation)
 void ABaseObject::InitializeFromDataTable()
 {
 	static const FString Context = TEXT("Object Initialization");
-	FStructObjectData* Row = DataTable->FindRow<FStructObjectData>(RowName, Context);
+	FStructItem* Row = DataTable->FindRow<FStructItem>(RowName, Context);
 
-	if (Row->Mesh)
+	if (Row->ItemMesh)
 	{
-		StaticMeshComp->SetStaticMesh(Row->Mesh);
+		StaticMeshComp->SetStaticMesh(Row->ItemMesh);
 	}
 
 	ActiveInterface = EInterfaceType::None;
@@ -117,9 +119,9 @@ void ABaseObject::InitializeFromDataTable()
 void ABaseObject::AssignMeshFromDataTable()
 {
 	static const FString ContextString(TEXT("Mesh Data Context"));
-	FStructObjectData* Row = DataTable->FindRow<FStructObjectData>(RowName, ContextString);
+	FStructItem* Row = DataTable->FindRow<FStructItem>(RowName, ContextString);
 
-	StaticMeshComp->SetStaticMesh(Row->Mesh);
+	StaticMeshComp->SetStaticMesh(Row->ItemMesh);
 }
 
 void ABaseObject::ResetObjectProperties()
