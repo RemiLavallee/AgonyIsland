@@ -13,6 +13,7 @@
 #include "Engine/LocalPlayer.h"
 #include "BaseObject.h"
 #include "FlashLight.h"
+#include "InventoryWidget.h"
 #include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -132,6 +133,8 @@ void AHorrorGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		EnhancedInputComponent->BindAction(DropItemAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::DropItem);
 
 		EnhancedInputComponent->BindAction(ToggleFlashLightAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::ToggleFlashLight);
+
+		EnhancedInputComponent->BindAction(OpenInventoryAction, ETriggerEvent::Triggered, this, &AHorrorGameCharacter::OpenInventory);
 	}
 	else
 	{
@@ -459,6 +462,14 @@ void AHorrorGameCharacter::ToggleFlashLight()
 	auto FlashLight = Cast<AFlashLight>(EquippedItem);
 	if (FlashLight) FlashLight->ToggleLight();
 
+}
+
+void AHorrorGameCharacter::OpenInventory()
+{
+	auto Widget = CreateWidget<UUserWidget>(GetWorld(), InventoryWidgetClass);
+	InventoryWidget = Cast<UInventoryWidget>(Widget);
+
+	if (InventoryWidget) InventoryWidget->AddToViewport();
 }
 
 void AHorrorGameCharacter::UpdateCrouchTransition(float Value)

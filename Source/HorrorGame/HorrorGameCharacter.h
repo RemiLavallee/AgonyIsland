@@ -81,6 +81,9 @@ class AHorrorGameCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* ToggleFlashLightAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* OpenInventoryAction;
+
 public:
 	AHorrorGameCharacter();
 
@@ -128,6 +131,8 @@ protected:
 
 	void ToggleFlashLight();
 
+	void OpenInventory();
+
 	UFUNCTION()
 	void UpdateCrouchTransition(float Value);
 	
@@ -149,6 +154,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 	UCurveFloat* CrouchCurve;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	class UInventoryComponent* InventoryComponent;
 	
 	bool IsCrouching() const { return bIsCrouching; }
 
@@ -164,6 +172,11 @@ private:
 	class UOptionsWidget* OptionsWidget;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UOptionsWidget> OptionsWidgetClass;
+
+	UPROPERTY()
+	class UInventoryWidget* InventoryWidget;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UInventoryWidget> InventoryWidgetClass;
 	
 	UPROPERTY()
 	class AFlashLight* EquippedFlashlight;

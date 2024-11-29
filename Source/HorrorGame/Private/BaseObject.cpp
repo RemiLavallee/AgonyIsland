@@ -96,19 +96,20 @@ void ABaseObject::InitializeFromDataTable()
 
 	switch (ActiveInterface)
 	{
-	case Row->InterfaceType == EInterfaceType::Pickup:
+	case EInterfaceType::Pickup:
 		ActiveInterface = EInterfaceType::Pickup;
 		break;
 
-	case Row->InterfaceType == EInterfaceType::Inspect:
+	case EInterfaceType::Inspect:
 		ActiveInterface = EInterfaceType::Inspect;
 		break;
 
-	case Row->InterfaceType == EInterfaceType::Interact:
+	case EInterfaceType::Interact:
 		ActiveInterface = EInterfaceType::Interact;
 		break;
 
 	default:
+		UE_LOG(LogTemp, Warning, TEXT("Unknown Interface type"));
 		break;
 	}
 }
