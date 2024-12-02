@@ -2,9 +2,9 @@
 
 
 #include "InventoryWidget.h"
-
 #include "InventoryComponent.h"
 #include "ItemSlotWidget.h"
+#include "Components/TextBlock.h"
 #include "Components/WrapBox.h"
 
 void UInventoryWidget::RefreshInventory(UInventoryComponent* InventoryComponent)
@@ -13,18 +13,40 @@ void UInventoryWidget::RefreshInventory(UInventoryComponent* InventoryComponent)
 	{
 		WrapInventory->ClearChildren();
 		int32 Index = 0;
-		for (auto Element : InventoryComponent->Items)
+		for (auto& Element : InventoryComponent->Items)
 		{
 			if (UItemSlotWidget* Widget = CreateWidget<UItemSlotWidget>(GetWorld(), SlotWidgetClass))
 			{
-				InventoryComponent->Items;
+				// InventoryComponent->Items;
 				Widget->Item = Element;
 				Widget->Index = Index;
+				Widget->InventoryWidget = this;
 				Widget->RefreshSlot(Element);
 				WrapInventory->AddChildToWrapBox(Widget);
 			}
 			Index++;
 		}
+	}
+}
+
+void UInventoryWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	NameText->SetText(InventoryName);
+	DescriptionText->SetText(InventoryDescription);
+}
+
+void UInventoryWidget::UpdateText()
+{
+	if (NameText)
+	{
+		NameText->SetText(InventoryName);
+	}
+
+	if (DescriptionText)
+	{
+		DescriptionText->SetText(InventoryDescription);
 	}
 }
 

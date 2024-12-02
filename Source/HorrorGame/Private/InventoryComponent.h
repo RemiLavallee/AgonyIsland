@@ -20,7 +20,7 @@ public:
 	
 	void OpenWidget();
 	void AddToInventory(ABaseObject* InventoryItem);
-	bool ShouldStackItem(FStructItem& ItemInventory, FStructItem& ItemToAdd, int32& NewAmount);
+	bool ShouldStackItem(FStructItem& ItemInventory, FStructItem& ItemToAdd);
 	bool HasSpaceInventory(int32 ItemAmountFromInventory);
 
 protected:

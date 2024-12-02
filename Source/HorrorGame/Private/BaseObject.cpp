@@ -128,7 +128,7 @@ void ABaseObject::InitializeFromDataTable()
 	}
 }
 
-void ABaseObject::AssignMeshFromDataTable()
+void ABaseObject::AssignValueFromDataTable()
 {
 	static const FString ContextString(TEXT("Mesh Data Context"));
 	FStructItem* Row = DataTable->FindRow<FStructItem>(RowName, ContextString);

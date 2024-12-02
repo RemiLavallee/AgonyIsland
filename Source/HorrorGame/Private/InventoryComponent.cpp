@@ -31,53 +31,56 @@ void UInventoryComponent::OpenWidget()
 void UInventoryComponent::AddToInventory(ABaseObject* InventoryItem)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CALL ADD"));
-	int Index = 0;
-	bool bItemAdded = false;
-	for (auto Element : Items)
+	
+	for (auto& Element : Items)
 	{
-		if (ShouldStackItem(Element, InventoryItem->Items, NewAmountItem))
+		if (Element.ItemStack == 0) continue;
+		
+		if (ShouldStackItem(Element, InventoryItem->Items))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("CALL ADD SHOULDDDD"));
-			Element.ItemStack = NewAmountItem;
-			bItemAdded = true;
-			break;
+			Element.ItemStack += InventoryItem->ItemStack;
+			UE_LOG(LogTemp, Warning, TEXT("New amount item: %d"),Element.ItemStack);
+			InventoryWidget->RefreshInventory(this);
+			return;
 		}
-		Index++;
 	}
 
-	if (!bItemAdded && HasSpaceInventory(InventoryItem->ItemStack))
+	if (HasSpaceInventory(InventoryItem->ItemStack))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("CALL ADD ITEM"));
 		FStructItem NewItem;
 		NewItem.ItemName = InventoryItem->ItemName;
 		NewItem.ItemDescription = InventoryItem->ItemDescription;
-		NewItem.ItemStack = InventoryItem->ItemStack;
 		NewItem.ItemImage = InventoryItem->ItemIcon;
+		NewItem.ItemStack = InventoryItem->ItemStack;
+		NewItem.bIsStackable = InventoryItem->bIsStackable;
 		Items.Insert(NewItem, ItemIndex);
 		Items.RemoveAt(InventorySlot - ItemIndex);
-		bItemAdded = true;
+		InventoryWidget->RefreshInventory(this);
 	}
-		
-	InventoryWidget->RefreshInventory(this);
 }
 
-bool UInventoryComponent::ShouldStackItem(FStructItem& ItemInventory, FStructItem& ItemToAdd, int32& NewAmount)
+bool UInventoryComponent::ShouldStackItem(FStructItem& ItemInventory, FStructItem& ItemToAdd)
 {
 	UE_LOG(LogTemp, Warning, TEXT("CALL SHOULD"));
 	bool bIsInventory = ItemToAdd.bItemInventory;
 	bool bIsStackable = ItemToAdd.bIsStackable;
 	bool bHasPlaceStack = (ItemInventory.ItemStack + ItemToAdd.ItemStack) <= MaxAmountItem;
-	bool bIsSameItem = ItemInventory.ItemStack == ItemToAdd.ItemStack;
-	
+	bool bIsSameItem = ItemInventory.ItemName.ToString() == ItemToAdd.ItemName.ToString();
+	UE_LOG(LogTemp, Warning, TEXT("bIsInventory: %d, bIsStackable: %d, bHasPlaceStack: %d, bIsSameItem: %d"),
+	   bIsInventory, bIsStackable, bHasPlaceStack, bIsSameItem);
 	if (bIsInventory && bIsStackable && bHasPlaceStack && bIsSameItem)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("CALL TRUE"));
-		NewAmount = ItemInventory.ItemStack + ItemToAdd.ItemStack;
+		NewAmountItem = ItemInventory.ItemStack + ItemToAdd.ItemStack;
+		UE_LOG(LogTemp, Warning, TEXT("New amount item: %d"), NewAmountItem);
 		return true;
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("CALL FALSE"));
-	NewAmount = ItemInventory.ItemStack;
+	NewAmountItem = ItemInventory.ItemStack;
+	UE_LOG(LogTemp, Warning, TEXT("New amount item: %d"), NewAmountItem);
 	return false;
 }
 
@@ -86,11 +89,11 @@ bool UInventoryComponent::HasSpaceInventory(int32 ItemAmountFromInventory)
 	UE_LOG(LogTemp, Warning, TEXT("CALL SPACE"));
 	if (ItemAmountFromInventory == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("CALL SPACE TRUE"));
+		UE_LOG(LogTemp, Warning, TEXT("CALL SPACE FALSE"));
 		return false;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("CALL SPACE FALSE"));
+	UE_LOG(LogTemp, Warning, TEXT("CALL SPACE TRUE"));
 	return true;
 }
 

@@ -24,11 +24,15 @@ void UItemSlotWidget::RefreshSlot(const FStructItem& NewItem)
 	{
 		FText StackText = FText::AsNumber(NewItem.ItemStack);
 		ItemCountText->SetText(StackText);
+		UE_LOG(LogTemp, Warning, TEXT("Text set: %s"), *StackText.ToString());
+		ItemCountBorder->SetVisibility(ESlateVisibility::Visible);
 	}
 	else
 	{
 		ItemCountBorder->SetVisibility(ESlateVisibility::Hidden);
 	}
+
+	Item = NewItem;
 }
 
 void UItemSlotWidget::NativeConstruct()
@@ -43,8 +47,18 @@ void UItemSlotWidget::OnButtonHovered()
 {
 	if (IsValid(InventoryWidget))
 	{
-		InventoryWidget->NameText->SetText(Item.ItemName);
-		InventoryWidget->DescriptionText->SetText(Item.ItemDescription);
+		if (Item.ItemName.ToString() == TEXT("Default Name"))
+		{
+			InventoryWidget->InventoryName = FText::GetEmpty();
+			InventoryWidget->InventoryDescription = FText::GetEmpty();
+		}
+		else
+		{
+			
+			InventoryWidget->InventoryName = Item.ItemName;
+			InventoryWidget->InventoryDescription = Item.ItemDescription;
+		}
+		InventoryWidget->UpdateText(); 
 	}
 }
 
@@ -52,7 +66,8 @@ void UItemSlotWidget::OnButtonUnHovered()
 {
 	if (IsValid(InventoryWidget))
 	{
-		InventoryWidget->NameText->SetText(FText::GetEmpty());
-		InventoryWidget->DescriptionText->SetText(FText::GetEmpty());
+		InventoryWidget->InventoryName.GetEmpty();
+		InventoryWidget->InventoryDescription.GetEmpty();
+		InventoryWidget->UpdateText(); 
 	}
 }

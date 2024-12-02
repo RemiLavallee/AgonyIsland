@@ -68,7 +68,7 @@ private:
 	void InitializeFromDataTable();
 	
 	UFUNCTION(CallInEditor, Category = "Objects")
-	void AssignMeshFromDataTable();
+	void AssignValueFromDataTable();
 
 	FTimerHandle TimerHandle_ResetObject;
 	void ResetObjectProperties();

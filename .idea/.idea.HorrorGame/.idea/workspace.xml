@@ -15,15 +15,8 @@
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/DataTable/DT_Item.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DataTable/DT_Item.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/DataTable/DT_Object.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_DataTableObject.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_DataTableObject.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Flash.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Flash.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Letter.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_LetterB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_LetterB.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Safetybox.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_Safetybox.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/UI/WBP_Inventory.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_Inventory.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGameCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.cpp" afterDir="false" />
@@ -31,10 +24,6 @@
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/StructObjectData.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -636,6 +625,8 @@
       <workItem from="1732892010027" duration="15337000" />
       <workItem from="1733084514058" duration="1049000" />
       <workItem from="1733085727106" duration="14093000" />
+      <workItem from="1733110520641" duration="7884000" />
+      <workItem from="1733151614718" duration="1763000" />
     </task>
     <servers />
   </component>

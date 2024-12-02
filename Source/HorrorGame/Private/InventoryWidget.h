@@ -16,6 +16,8 @@ class UInventoryWidget : public UUserWidget
 public:
 	UFUNCTION()
 	void RefreshInventory(class UInventoryComponent* InventoryComponent);
+	virtual void NativeConstruct() override;
+	void UpdateText();
 	
 	UPROPERTY(meta = (BindWidget))
 	class UWrapBox* WrapInventory;
@@ -23,6 +25,9 @@ public:
 	class UTextBlock* NameText;
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* DescriptionText;
+
+	FText InventoryName;
+	FText InventoryDescription;
 
 	UPROPERTY()
 	class UItemSlotWidget* SlotWidget;
