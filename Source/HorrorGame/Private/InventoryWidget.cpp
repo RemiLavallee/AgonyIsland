@@ -13,10 +13,11 @@ void UInventoryWidget::RefreshInventory(UInventoryComponent* InventoryComponent)
 	{
 		WrapInventory->ClearChildren();
 		int32 Index = 0;
-		for (const FStructItem& Element : InventoryComponent->Items)
+		for (auto Element : InventoryComponent->Items)
 		{
 			if (UItemSlotWidget* Widget = CreateWidget<UItemSlotWidget>(GetWorld(), SlotWidgetClass))
 			{
+				InventoryComponent->Items;
 				Widget->Item = Element;
 				Widget->Index = Index;
 				Widget->RefreshSlot(Element);
@@ -26,6 +27,7 @@ void UInventoryWidget::RefreshInventory(UInventoryComponent* InventoryComponent)
 		}
 	}
 }
+
 
 FReply UInventoryWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
 {

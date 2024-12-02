@@ -14,7 +14,6 @@
 #include "BaseObject.h"
 #include "FlashLight.h"
 #include "InventoryComponent.h"
-#include "InventoryWidget.h"
 #include "OptionsWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -382,6 +381,7 @@ void AHorrorGameCharacter::PickUp()
 	if (Object && Object->ActiveInterface == EInterfaceType::Pickup)
 	{
 		Object->PickUp(ItemOffset);
+		InventoryComponent->AddToInventory(Object);
 		EquippedItem = Object;
 		CurrentActor = nullptr;
 	}

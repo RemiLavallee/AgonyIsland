@@ -19,8 +19,9 @@ public:
 	UInventoryComponent();
 	
 	void OpenWidget();
-	void AddToIventory(ABaseObject* InventoryItem);
-	void ShouldStackItem(FStructItem ItemInventory, FStructItem ItemToAdd);
+	void AddToInventory(ABaseObject* InventoryItem);
+	bool ShouldStackItem(FStructItem& ItemInventory, FStructItem& ItemToAdd, int32& NewAmount);
+	bool HasSpaceInventory(int32 ItemAmountFromInventory);
 
 protected:
 	// Called when the game starts
@@ -39,5 +40,6 @@ public:
 	int MaxAmountItem;
 	int InventorySlot;
 	int NewAmountItem;
+	
 	
 };

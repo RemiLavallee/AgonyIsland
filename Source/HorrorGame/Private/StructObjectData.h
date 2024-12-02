@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "InterfaceType.h"
-#include "Engine/DataTable.h"
 #include "StructObjectData.generated.h"
 
 USTRUCT(BlueprintType)

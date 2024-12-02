@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "StructItem.h"
 #include "Blueprint/UserWidget.h"
 #include "InventoryWidget.generated.h"
 
@@ -15,9 +16,13 @@ class UInventoryWidget : public UUserWidget
 public:
 	UFUNCTION()
 	void RefreshInventory(class UInventoryComponent* InventoryComponent);
-
+	
 	UPROPERTY(meta = (BindWidget))
 	class UWrapBox* WrapInventory;
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* NameText;
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* DescriptionText;
 
 	UPROPERTY()
 	class UItemSlotWidget* SlotWidget;

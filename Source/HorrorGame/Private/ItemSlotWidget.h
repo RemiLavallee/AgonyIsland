@@ -33,6 +33,11 @@ public:
 
 	UFUNCTION()
 	void RefreshSlot(const FStructItem& NewItem);
+	virtual void NativeConstruct() override;
+	UFUNCTION()
+	void OnButtonHovered();
+	UFUNCTION()
+	void OnButtonUnHovered();
 	
 	UPROPERTY()
 	class UInventoryWidget* InventoryWidget;

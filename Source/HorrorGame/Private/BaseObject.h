@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "StructObjectData.h"
 #include "InterfaceInspect.h"
 #include "InterfaceInteract.h"
 #include "InterfacePickUp.h"
+#include "StructItem.h"
 #include "BaseObject.generated.h"
 
 UCLASS()
@@ -37,9 +37,22 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	bool bItemInventory;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FText ItemName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FText ItemDescription;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	bool bIsStackable;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	int32 ItemStack;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	UTexture2D* ItemIcon;
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMeshComp;
+	FStructItem Items;
 
 	virtual void OnPickUp() override;
 	virtual void OnInspect() override;

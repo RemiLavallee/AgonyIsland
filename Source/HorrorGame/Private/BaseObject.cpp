@@ -2,7 +2,6 @@
 
 
 #include "BaseObject.h"
-
 #include "StructItem.h"
 
 // Sets default values
@@ -17,8 +16,12 @@ ABaseObject::ABaseObject()
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	StaticMeshComp->SetupAttachment(Root);
 	
-	bIsPickedUp = false;
 	AttachedComponent = nullptr;
+	DataTable = nullptr;
+	bItemInventory = false;
+	bIsPickedUp = false;
+	ItemStack = 0;
+	ActiveInterface = EInterfaceType::None;
 }
 
 // Called when the game starts or when spawned
@@ -85,9 +88,18 @@ void ABaseObject::Drop(const FVector& DropLocation)
 
 void ABaseObject::InitializeFromDataTable()
 {
+	
 	static const FString Context = TEXT("Object Initialization");
 	FStructItem* Row = DataTable->FindRow<FStructItem>(RowName, Context);
 
+	Items = *Row;
+	bItemInventory = Row->bItemInventory;
+	ItemName = Row->ItemName;
+	ItemDescription = Row->ItemDescription;
+	bIsStackable = Row->bIsStackable;
+	ItemStack = Row->ItemStack;
+	ItemIcon = Row->ItemImage;
+	
 	if (Row->ItemMesh)
 	{
 		StaticMeshComp->SetStaticMesh(Row->ItemMesh);
@@ -122,6 +134,12 @@ void ABaseObject::AssignMeshFromDataTable()
 	FStructItem* Row = DataTable->FindRow<FStructItem>(RowName, ContextString);
 
 	StaticMeshComp->SetStaticMesh(Row->ItemMesh);
+	bItemInventory = Row->bItemInventory;
+	ItemName = Row->ItemName;
+	ItemDescription = Row->ItemDescription;
+	bIsStackable = Row->bIsStackable;
+	ItemStack = Row->ItemStack;
+	ItemIcon = Row->ItemImage;
 }
 
 void ABaseObject::ResetObjectProperties()

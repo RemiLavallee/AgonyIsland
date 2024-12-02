@@ -3,15 +3,15 @@
 
 #include "ItemSlotWidget.h"
 
-#include <string>
-
+#include "InventoryWidget.h"
 #include "Components/Border.h"
+#include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 
 void UItemSlotWidget::RefreshSlot(const FStructItem& NewItem)
 {
-	if (NewItem.ItemImage->IsValidLowLevel())
+	if (IsValid(NewItem.ItemImage))
 	{
 		InventorySlotImage->SetBrushFromTexture(NewItem.ItemImage);
 	}
@@ -28,5 +28,31 @@ void UItemSlotWidget::RefreshSlot(const FStructItem& NewItem)
 	else
 	{
 		ItemCountBorder->SetVisibility(ESlateVisibility::Hidden);
+	}
+}
+
+void UItemSlotWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	ItemButton->OnHovered.AddDynamic(this, &UItemSlotWidget::OnButtonHovered);
+	ItemButton->OnUnhovered.AddDynamic(this, &UItemSlotWidget::OnButtonUnHovered);
+}
+
+void UItemSlotWidget::OnButtonHovered()
+{
+	if (IsValid(InventoryWidget))
+	{
+		InventoryWidget->NameText->SetText(Item.ItemName);
+		InventoryWidget->DescriptionText->SetText(Item.ItemDescription);
+	}
+}
+
+void UItemSlotWidget::OnButtonUnHovered()
+{
+	if (IsValid(InventoryWidget))
+	{
+		InventoryWidget->NameText->SetText(FText::GetEmpty());
+		InventoryWidget->DescriptionText->SetText(FText::GetEmpty());
 	}
 }

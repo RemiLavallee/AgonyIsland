@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "InterfaceType.h"
+#include "Engine/DataTable.h"
 #include "StructItem.generated.h"
 
 
