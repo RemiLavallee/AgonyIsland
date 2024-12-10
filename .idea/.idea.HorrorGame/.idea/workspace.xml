@@ -14,11 +14,12 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/DataTable/DT_Item.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DataTable/DT_Item.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/HorrorGame.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/HorrorGame.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBox.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -585,7 +586,7 @@
       <workItem from="1733085727106" duration="14093000" />
       <workItem from="1733110520641" duration="7884000" />
       <workItem from="1733151614718" duration="2363000" />
-      <workItem from="1733846910309" duration="10747000" />
+      <workItem from="1733846910309" duration="13729000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseObject.h"
 #include "StructItem.h"
 
-// Sets default values
 ABaseObject::ABaseObject()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Root = CreateDefaultSubobject<USceneComponent>("Root");
@@ -24,23 +19,26 @@ ABaseObject::ABaseObject()
 	ActiveInterface = EInterfaceType::None;
 }
 
-// Called when the game starts or when spawned
 void ABaseObject::BeginPlay()
 {
 	Super::BeginPlay();
 	InitializeFromDataTable();
 }
 
-// Called every frame
 void ABaseObject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	
 	if (bIsPickedUp && AttachedComponent)
 	{
-		SetActorLocation(AttachedComponent->GetComponentLocation());
-		SetActorRotation(AttachedComponent->GetComponentRotation());
+		FVector NewLocation = AttachedComponent->GetComponentLocation();
+		FRotator NewRotation = AttachedComponent->GetComponentRotation();
+		
+		if (!GetActorLocation().Equals(NewLocation) || !GetActorRotation().Equals(NewRotation))
+		{
+			SetActorLocation(NewLocation);
+			SetActorRotation(NewRotation);
+		}
 	}
 }
 
@@ -54,7 +52,6 @@ void ABaseObject::OnInspect()
 
 void ABaseObject::OnInteract()
 {
-	
 }
 
 void ABaseObject::DropItem()
@@ -64,6 +61,9 @@ void ABaseObject::DropItem()
 void ABaseObject::PickUp(USceneComponent* AttachTo)
 {
 	if (!AttachTo) return;
+
+	StaticMeshComp->SetRelativeRotation(FRotator(0, 0, 0));
+	StaticMeshComp->SetRelativeLocation(FVector(0, 0, 0));
 
 	AttachToComponent(AttachTo, FAttachmentTransformRules::SnapToTargetIncludingScale);
 	AttachedComponent = AttachTo;
