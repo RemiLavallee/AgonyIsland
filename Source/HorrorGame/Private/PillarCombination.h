@@ -10,7 +10,6 @@ class APillarCombination : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	APillarCombination();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pillar Combinaison")

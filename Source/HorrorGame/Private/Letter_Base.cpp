@@ -1,12 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Letter_Base.h"
 #include "LetterWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/SceneCaptureComponent2D.h"
 #include "Components/TextBlock.h"
-
 
 ALetter_Base::ALetter_Base()
 {

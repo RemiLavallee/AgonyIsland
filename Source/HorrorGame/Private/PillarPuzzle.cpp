@@ -15,7 +15,6 @@ APillarPuzzle::APillarPuzzle()
 	EffectNiagara->SetupAttachment(Root);
 
 	ballPillarsActivated = false;
-
 }
 
 void APillarPuzzle::BeginPlay()

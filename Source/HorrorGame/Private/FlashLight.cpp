@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FlashLight.h"
 #include "Components/SpotLightComponent.h"
 
@@ -25,5 +22,3 @@ void AFlashLight::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
-

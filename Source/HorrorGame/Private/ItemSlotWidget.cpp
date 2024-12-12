@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ItemSlotWidget.h"
 
 #include "InventoryWidget.h"
@@ -54,7 +51,6 @@ void UItemSlotWidget::OnButtonHovered()
 		}
 		else
 		{
-			
 			InventoryWidget->InventoryName = Item.ItemName;
 			InventoryWidget->InventoryDescription = Item.ItemDescription;
 		}

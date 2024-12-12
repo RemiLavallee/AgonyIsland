@@ -14,12 +14,55 @@
   <component name="ChangeListManager">
     <list default="true" id="98c63877-6886-4df3-accd-bb91bd663b1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DataTable/DT_DialogText.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_LetterB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Blueprints/BP_LetterB.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/FirstPerson/Maps/Island.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/LevelScene/L_MainScene.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/LevelScene/L_MainScene.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/LevelSequence/LS_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/LevelSequence/LS_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Video/Island.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Video/Island__3_.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Video/Island__3_.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Video/MP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Video/MP_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Video/MP_MainMenu_Video.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Video/MP_MainMenu_Video.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Video/MP_MainMenu_Video_Mat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Video/MP_MainMenu_Video_Mat.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/BaseObject.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/DialogText.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/DialogAudio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/DialogText.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/DialogAudio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/FlashLight.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Portal.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInspect.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceInteract.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfacePickUp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InterfaceType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/InventoryWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/ItemSlotWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/LetterWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/LetterWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/LetterWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/LetterWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Letter_Base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Letter_Base.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/Letter_Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/Letter_Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/MainMenuWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/MainMenuWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/MainMenuWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/MainMenuWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/NPC_Boss.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/NPC_Boss.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/NPC_Boss.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/NPC_Boss.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/OptionsWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/OptionsWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/OptionsWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/OptionsWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PillarCombination.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PillarCombination.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PillarPuzzle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PillarPuzzle.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerAnimation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/PlayerWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/SafetyBoxWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/HorrorGame/Private/StructItem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +82,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/Engine/Classes/Kismet/GameplayStatics.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/UMG/Private/WidgetBlueprintLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.4/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/DialogManager.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PillarCombination.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/PillarPuzzle.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/HorrorGame/Private/Portal.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -586,7 +630,11 @@
       <workItem from="1733085727106" duration="14093000" />
       <workItem from="1733110520641" duration="7884000" />
       <workItem from="1733151614718" duration="2363000" />
-      <workItem from="1733846910309" duration="13729000" />
+      <workItem from="1733846910309" duration="14279000" />
+      <workItem from="1733891661745" duration="733000" />
+      <workItem from="1733937345853" duration="1683000" />
+      <workItem from="1733940113996" duration="1919000" />
+      <workItem from="1733958411985" duration="4889000" />
     </task>
     <servers />
   </component>

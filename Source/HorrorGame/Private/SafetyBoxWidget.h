@@ -1,14 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "SafetyBoxWidget.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class USafetyBoxWidget : public UUserWidget
 {

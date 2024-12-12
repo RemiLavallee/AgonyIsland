@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,7 +13,6 @@ class UInventoryComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UInventoryComponent();
 	
 	void OpenWidget();
@@ -24,7 +21,6 @@ public:
 	bool HasSpaceInventory(int32 ItemAmountFromInventory);
 
 protected:
-	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	UPROPERTY()
@@ -33,13 +29,10 @@ protected:
 	TSubclassOf<UInventoryWidget> InventoryWidgetClass;
 
 public:	
-	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	TArray<FStructItem> Items;
 	int ItemIndex;
 	int MaxAmountItem;
 	int InventorySlot;
 	int NewAmountItem;
-	
-	
 };

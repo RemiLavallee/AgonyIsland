@@ -1,14 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "BaseObject.h"
 #include "Letter_Base.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class ALetter_Base : public ABaseObject
 {

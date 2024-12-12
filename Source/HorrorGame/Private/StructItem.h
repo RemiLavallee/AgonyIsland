@@ -5,7 +5,6 @@
 #include "Engine/DataTable.h"
 #include "StructItem.generated.h"
 
-
 USTRUCT(BlueprintType) 
 struct FStructItem : public FTableRowBase
 {
